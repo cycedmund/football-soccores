@@ -2,7 +2,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const MainNavbar = ({ searchResults, handleSearch, standings }) => {
+const MainNavbar = ({ handleSearch, standings }) => {
   const [searchInput, setSearchInput] = useState("");
   const location = useLocation();
   const navigate = useNavigate();

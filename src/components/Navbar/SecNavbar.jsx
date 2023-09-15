@@ -2,22 +2,16 @@ import { NavLink } from "react-router-dom";
 
 const SecNavbar = () => {
   return (
-    <div className="navbar bg-base-100" data-theme="night">
-      <ul className="flex space-x-20">
+    <div className="flex menu menu-horizontal items-center text-gray-600 font-bold bg-gray-900">
+      <ul className="flex space-x-20 text-base">
         <li>
-          <NavLink to="/" className="btn normal-case text-base">
-            Live
-          </NavLink>
+          <NavLink to="/">LIVE</NavLink>
         </li>
         <li>
-          <NavLink to="/finished" className="btn normal-case text-base">
-            Finished
-          </NavLink>
+          <NavLink to="/finished">FINISHED</NavLink>
         </li>
         <li>
-          <NavLink to="/scheduled" className="btn normal-case text-base">
-            Scheduled
-          </NavLink>
+          <NavLink to="/scheduled">SCHEDULED</NavLink>
         </li>
       </ul>
     </div>

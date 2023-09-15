@@ -1,7 +1,7 @@
 import SecondHalfInfo from "./SecondHalfInfo";
 import FirstHalfInfo from "./FirstHalfInfo";
 
-const FixtureInfo = ({ fixture }) => {
+const MainInfo = ({ fixture }) => {
   const firstHalfEvents = fixture.events.filter(
     (event) => event.time.elapsed <= 45
   );
@@ -55,4 +55,4 @@ const FixtureInfo = ({ fixture }) => {
   );
 };
 
-export default FixtureInfo;
+export default MainInfo;

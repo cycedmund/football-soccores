@@ -1,9 +1,10 @@
-import FixtureInfo from "../LivePages/FixtureInfo/FixtureInfo";
-import { useParams } from "react-router-dom";
+import MainInfo from "../../components/FixtureInfo/MainInfo";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { arsdata } from "../../data/finished-fixtures/detailsArs";
 
-const FinishedInfo = () => {
-  const [matchEvents, setMatchEvents] = useState(null);
+const FinishedInfoPage = () => {
+  const [matchEvents, setMatchEvents] = useState(arsdata); //should be null
   const { matchID } = useParams();
   const numMatchId = parseInt(matchID);
 
@@ -30,10 +31,6 @@ const FinishedInfo = () => {
   //   };
   //   fetchEvent();
   // }, [numMatchId]);
-
-  // console.log("event", matchEvents);
-  //filter the api response, filter out each fixture id to see if match the param
-  //if yes, then give me the result
 
   if (!matchEvents) {
     return (
@@ -71,13 +68,13 @@ const FinishedInfo = () => {
             <img
               className="mx-auto"
               src={fixture.teams.home.logo}
-              width={50}
+              width={100}
               alt={fixture.teams.home.name}
             />
-            <p className="text-center">{fixture.teams.home.name}</p>
+            <p className="text-center text-mymed">{fixture.teams.home.name}</p>
           </div>
 
-          <p className="w-[30%] flex items-center justify-center text-2xl">
+          <p className="w-[30%] flex items-center justify-center text-mybig">
             {fixture.goals.home} - {fixture.goals.away}
           </p>
 
@@ -85,10 +82,12 @@ const FinishedInfo = () => {
             <img
               className="mx-auto"
               src={fixture.teams.away.logo}
-              width={50}
+              width={100}
               alt={fixture.teams.away.name}
             />
-            <div className="text-center">{fixture.teams.away.name}</div>
+            <div className="text-center text-mymed">
+              {fixture.teams.away.name}
+            </div>
           </div>
         </section>
         <div className="text-center">{fixture.fixture.status.long}</div>
@@ -102,19 +101,10 @@ const FinishedInfo = () => {
           </div>
         )}
       </article>
-
-      <FixtureInfo fixture={fixture} />
+      {/* above can be one component --> maybe can merge with the LivePage */}
+      <MainInfo fixture={fixture} />
 
       <div className="grid grid-cols-1 text-center">
-        {fixture.score.fulltime.home ? (
-          <div className="p-2">
-            <h1 className="bg-slate-800 p-1 text-white text-l">Score</h1>
-            Full Time
-            <br />
-            {fixture.score.fulltime.home} : {fixture.score.fulltime.away}
-          </div>
-        ) : null}
-
         {fixture.score.extratime.home ? (
           <div className="p-2">
             <h1 className="bg-slate-800 p-1 text-white text-l">Score</h1>
@@ -133,18 +123,17 @@ const FinishedInfo = () => {
           </div>
         ) : null}
       </div>
-
       <dl className="grid grid-cols-1 text-center">
-        <dt className="bg-slate-800 p-1 text-white text-l">
-          Match Information
-        </dt>
-
+        <Link to={`/finished/${matchID}/lineups`}>
+          <dt className="bg-slate-800 p-1 text-white text-l">Details</dt>
+        </Link>
         <dd className="p-2">Stadium - {fixture.fixture.venue.name}</dd>
         <dd className="p-2">Country - {fixture.league.country}</dd>
         <dd className="p-2">{fixture.league.round}</dd>
       </dl>
+      <Outlet context={[matchEvents, setMatchEvents]} />
     </div>
   );
 };
 
-export default FinishedInfo;
+export default FinishedInfoPage;

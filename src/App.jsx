@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import MainNavbar from "./components/Navbar/MainNavbar";
-import MainPage from "./pages/MainPage";
 import LivePage from "./pages/LivePages/LivePage";
+import LiveInfoPage from "./pages/LivePages/LiveInfoPage";
 import StandingPage from "./pages/StandingPage/StandingPage";
 import FavouritePage from "./pages/FavouritePage/FavouritePage";
 import TeamsPage from "./pages/TeamPage/TeamsPage";
@@ -14,7 +14,8 @@ import doPostFavTeam from "./utils/crudapi/createapi";
 import doDeleteFavTeam from "./utils/crudapi/deleteapi";
 import doFetchFavTeam from "./utils/crudapi/readapi";
 import FinishedPage from "./pages/FinishedPage/FinishedPage";
-import FinishedInfo from "./pages/FinishedPage/FinishedInfo";
+import FinishedInfoPage from "./pages/FinishedPage/FinishedInfoPage";
+import MainLineupTable from "./pages/FinishedPage/LineupTable/MainLineupTable";
 
 function App() {
   const [fixtures, setFixtures] = useState([data]);
@@ -174,14 +175,19 @@ function App() {
         fixtures.length !== 0 && (
           <Routes>
             {/* change to data={fixtures} */}
-            <Route path="/" element={<MainPage fixtures={fixtures[0]} />} />
+            <Route path="/" element={<LivePage fixtures={fixtures[0]} />} />
             <Route path="/finished" element={<FinishedPage />} />
             {/* see if can merge main into finished */}
             <Route
               path="/live/:matchID"
-              element={<LivePage fixtures={fixtures[0]} />}
+              element={<LiveInfoPage fixtures={fixtures[0]} />}
             />
-            <Route path="/finished/:matchID" element={<FinishedInfo />} />
+            <Route path="/finished/:matchID" element={<FinishedInfoPage />}>
+              <Route
+                path="/finished/:matchID/lineups"
+                element={<MainLineupTable />}
+              />
+            </Route>
             <Route
               path="/standings"
               element={<StandingPage standings={standings[0]} />}

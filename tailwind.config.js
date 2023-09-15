@@ -8,6 +8,10 @@ export default {
       fontFamily: {
         ox: ["Oxanium", "sans-serif"],
       },
+      fontSize: {
+        mybig: ["52px", "60px"],
+        mymed: ["28px", "36px"],
+      },
     },
   },
   plugins: [daisyui],
