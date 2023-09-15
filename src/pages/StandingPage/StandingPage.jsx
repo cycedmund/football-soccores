@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const StandingPage = ({ standings }) => {
-  console.log("standingpage", standings);
   return standings.length === 0 ? (
     <div className="flex h-5/6 items-center justify-center">
       <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>

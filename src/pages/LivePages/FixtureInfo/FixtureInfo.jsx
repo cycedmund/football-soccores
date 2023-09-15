@@ -28,22 +28,24 @@ const FixtureInfo = ({ fixture }) => {
         />
       )}
 
-      {fixture.fixture.status.long === "Second Half" && (
-        <header className="bg-slate-800 text-center my-0.5">
-          <h2>
-            Second Half{" "}
-            {fixture.score.fulltime.home !== null ? (
-              <span>
-                [{fixture.score.fulltime.home} - {fixture.score.fulltime.away}]
-              </span>
-            ) : (
-              <span>
-                [{fixture.goals.home} - {fixture.goals.away}]
-              </span>
-            )}
-          </h2>
-        </header>
-      )}
+      {fixture.fixture.status.long === "Second Half" ||
+        (fixture.fixture.status.short === "FT" && (
+          <header className="bg-slate-800 text-center my-0.5">
+            <h2>
+              Second Half{" "}
+              {fixture.score.fulltime.home !== null ? (
+                <span>
+                  [{fixture.score.fulltime.home} - {fixture.score.fulltime.away}
+                  ]
+                </span>
+              ) : (
+                <span>
+                  [{fixture.goals.home} - {fixture.goals.away}]
+                </span>
+              )}
+            </h2>
+          </header>
+        ))}
 
       <SecondHalfInfo
         secondHalfEvents={secondHalfEvents}

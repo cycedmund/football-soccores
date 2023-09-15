@@ -1,12 +1,10 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Navbar = ({ searchResults, handleSearch, standings }) => {
-  console.log(searchResults);
+const MainNavbar = ({ searchResults, handleSearch, standings }) => {
   const [searchInput, setSearchInput] = useState("");
   const location = useLocation();
-
   const navigate = useNavigate();
 
   const handleSearchSuggestion = (result) => {
@@ -33,36 +31,33 @@ const Navbar = ({ searchResults, handleSearch, standings }) => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Results</a>
+              <NavLink to="/standings">Standings</NavLink>
             </li>
             <li>
-              <Link to="/standings">Standings</Link>
+              <NavLink to="/teams">Teams</NavLink>
             </li>
             <li>
-              <Link to="/teams">Teams</Link>
-            </li>
-            <li>
-              <Link to="/favourite">Fav</Link>
+              <NavLink to="/favourite">Fav</NavLink>
             </li>
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          LiveScores
-        </Link>
+        <NavLink
+          to="/"
+          className="btn btn-ghost text-white normal-case text-2xl"
+        >
+          SOCCORES
+        </NavLink>
       </div>
       <div className="hidden lg:flex navbar-center">
         <ul className="menu menu-horizontal px-1 text-xl">
           <li>
-            <a>Results</a>
+            <NavLink to="/standings">Standings</NavLink>
           </li>
           <li>
-            <Link to="/standings">Standings</Link>
+            <NavLink to="/teams">Teams</NavLink>
           </li>
           <li>
-            <Link to="/teams">Teams</Link>
-          </li>
-          <li>
-            <Link to="/favourite">Fav</Link>
+            <NavLink to="/favourite">Favourites</NavLink>
           </li>
         </ul>
       </div>
@@ -112,4 +107,4 @@ const Navbar = ({ searchResults, handleSearch, standings }) => {
   );
 };
 
-export default Navbar;
+export default MainNavbar;

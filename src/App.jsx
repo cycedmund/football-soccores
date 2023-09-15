@@ -1,67 +1,32 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-// import { fetchFixtures } from "./data/live-fixtures/fetch-live-data";
-// import { fetchStandings } from "./data/standings/fetch-standings-data";
-// import { fetchSquad } from "./data/squad/fetch-squad";
-import Navbar from "./components/Navbar/Navbar";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import MainNavbar from "./components/Navbar/MainNavbar";
 import MainPage from "./pages/MainPage";
-import FixturePage from "./pages/FixturePages/FixturePage";
+import LivePage from "./pages/LivePages/LivePage";
 import StandingPage from "./pages/StandingPage/StandingPage";
+import FavouritePage from "./pages/FavouritePage/FavouritePage";
 import TeamsPage from "./pages/TeamPage/TeamsPage";
 import TeamInfo from "./pages/TeamPage/TeamInfo";
 import { data } from "./data/live-fixtures/dummy-live-data";
 import { dataStandings } from "./data/standings/dummy-standings";
-import { useNavigate } from "react-router-dom";
-import FavouritePage from "./pages/FavouritePage/FavouritePage";
-// import { squadData } from "./data/squad/dummy-squad";
+import { finisheddata } from "./data/finished-fixtures/finished";
+import doPostFavTeam from "./utils/crudapi/createapi";
+import doDeleteFavTeam from "./utils/crudapi/deleteapi";
+import doFetchFavTeam from "./utils/crudapi/readapi";
+import FinishedPage from "./pages/FinishedPage/FinishedPage";
+import FinishedInfo from "./pages/FinishedPage/FinishedInfo";
 
 function App() {
   const [fixtures, setFixtures] = useState([data]);
+  // const [fixtures, setFixtures] = useState([]);
+  // const [standings, setStandings] = useState([]);
   const [standings, setStandings] = useState([dataStandings]);
+  const [finished, setFinished] = useState([finisheddata]);
+  // const [status, setStatus] = useState("idle");
   const [status, setStatus] = useState("idle");
   const [searchResults, setSearchResults] = useState([]);
   const [favTeam, setFavTeam] = useState([]);
-
   const navigate = useNavigate();
-
-  const handleSearch = (searchInput) => {
-    const results = standings[0].response[0].league.standings[0].filter(
-      (team) => team.team.name.toLowerCase().includes(searchInput.toLowerCase())
-    );
-
-    if (results.length === 1) {
-      setSearchResults(results);
-      navigate(`/teams/${results[0].team.id}`);
-    }
-
-    setSearchResults([]);
-  };
-
-  const handleAddTeam = async (name, teamid, logo) => {
-    const data = {
-      fields: {
-        name,
-        teamid,
-        logo,
-      },
-    };
-
-    const TOKEN =
-      "patebhmai8LBWUFrm.a2898bcc697ba7bce4ac83299db5b0a7274eee2d2d6cb78e0002a7c1f4d61c28";
-    const BASE_URL = "https://api.airtable.com/v0/appCxSnjT1j5ynhh7";
-    const TABLE = "FavouriteTeam";
-
-    const response = await fetch(`${BASE_URL}/${TABLE}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${TOKEN}`,
-      },
-      body: JSON.stringify(data),
-    });
-    const jsonData = await response.json();
-    setFavTeam([...favTeam, jsonData]);
-  };
 
   //? ========= fetch live data =========
 
@@ -81,45 +46,84 @@ function App() {
   //     };
 
   //     try {
-  //       setStatus("loading")
+  // setStatus("loading");
   //       const responses = await Promise.all([
   //         fetch(urlLiveScores, options),
   //         fetch(urlStandings, options),
   //       ]);
-  //       if (!responses.ok) {
-  //                 throw new Error("Network response was not OK");
-  //               }
+
+  //       if (!responses.every((response) => response.ok)) {
+  //         throw new Error("Network response was not OK");
+  //       }
   //       const data = await Promise.all(responses.map((res) => res.json()));
   //       const [dataLiveScores, dataStandings] = data;
   //       const combinedData = {
   //         liveScores: dataLiveScores,
   //         standings: dataStandings,
   //       };
-  //       setStatus("success")
   //       setFixtures(combinedData.liveScores);
   //       setStandings(combinedData.standings);
+  //       setStatus("success");
   //     } catch (error) {
-  //       setStatus("error")
+  //       setStatus("error");
   //       console.error(error);
-  //     } finally {
-  //       setStatus("idle")
   //     }
   //   };
   //   // fetchData();
   // }, []);
 
-  if (status === "loading") {
-    return (
-      <div className="flex h-5/6 items-center justify-center">
-        <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
-      </div>
-    );
-  }
+  // if (status === "loading") {
+  //   return (
+  //     <div className="flex h-5/6 items-center justify-center">
+  //       <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
+  //     </div>
+  //   );
+  // }
 
-  if (status === "error") {
-    return <h2>Something went wrong...</h2>;
-  }
+  // if (status === "error") {
+  //   return <h2>Something went wrong...</h2>;
+  // }
   //? ========= fetch live data =========
+
+  const handleSearch = (searchInput) => {
+    const results = standings[0].response[0].league.standings[0].filter(
+      (team) => team.team.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+
+    if (results.length === 1) {
+      setSearchResults(results);
+      navigate(`/teams/${results[0].team.id}`);
+    }
+
+    setSearchResults([]);
+  };
+
+  useEffect(() => {
+    const fetchFavTeamData = async () => {
+      const favTeamData = await doFetchFavTeam();
+      setFavTeam(favTeamData);
+    };
+    fetchFavTeamData();
+  }, []);
+
+  const handleAddFavTeam = async (name, teamid, logo) => {
+    if (favTeam.some((team) => team.teamid === teamid)) {
+      const deleteFavTeam = favTeam.find((team) => team.teamid === teamid);
+      handleDeleteFavTeam(deleteFavTeam.id);
+    } else {
+      const jsonData = await doPostFavTeam(name, teamid, logo);
+      setFavTeam([...favTeam, { ...jsonData.fields, id: jsonData.id }]);
+    }
+  };
+
+  const handleDeleteFavTeam = async (id) => {
+    await doDeleteFavTeam(id);
+    setFavTeam(
+      favTeam.filter((team) => {
+        return team.id !== id;
+      })
+    );
+  };
 
   //* ========= refresh data =========
   // const refreshData = async () => {
@@ -143,8 +147,8 @@ function App() {
   const refresh = () => window.location.reload();
 
   return (
-    <div className="w-full-md:w-[700px] lg:w-[800px] h-screen m-auto">
-      <Navbar
+    <div className="w-full-md:w-[700px] lg:w-[850px] h-screen m-auto">
+      <MainNavbar
         searchResults={searchResults}
         handleSearch={handleSearch}
         standings={standings}
@@ -157,48 +161,56 @@ function App() {
         Refresh
       </button>
 
-      {/* {status === "loading" && (
-      <div className="flex h-5/6 items-center justify-center">
-        <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
-      </div>
-    )}
-
-    {status === "error" && <h2>Something went wrong...</h2>} */}
-      {/* {status === "success" && (} */}
-
-      {fixtures.length === 0 ? (
+      {status === "loading" && (
         <div className="flex h-5/6 items-center justify-center">
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
         </div>
-      ) : (
-        <Routes>
-          {/* change to data={fixtures} */}
-          <Route path="/" element={<MainPage fixtures={fixtures[0]} />} />
-          <Route
-            path="/fixture/:matchID"
-            element={<FixturePage fixtures={fixtures[0]} />}
-          />
-          <Route
-            path="/standings"
-            element={<StandingPage standings={standings[0]} />}
-          />
-          <Route
-            path="/teams"
-            // squad={squadData}
-            element={
-              <TeamsPage
-                standings={standings[0]}
-                handleAddTeam={handleAddTeam}
-              />
-            }
-          />
-          <Route path="/teams/:teamID" element={<TeamInfo />} />
-          <Route
-            path="/favourite"
-            element={<FavouritePage handleAddTeam={handleAddTeam} />}
-          />
-        </Routes>
       )}
+
+      {status === "error" && <h2>Something went wrong...</h2>}
+
+      {/* {status === "success" && ( */}
+      {
+        fixtures.length !== 0 && (
+          <Routes>
+            {/* change to data={fixtures} */}
+            <Route path="/" element={<MainPage fixtures={fixtures[0]} />} />
+            <Route path="/finished" element={<FinishedPage />} />
+            {/* see if can merge main into finished */}
+            <Route
+              path="/live/:matchID"
+              element={<LivePage fixtures={fixtures[0]} />}
+            />
+            <Route path="/finished/:matchID" element={<FinishedInfo />} />
+            <Route
+              path="/standings"
+              element={<StandingPage standings={standings[0]} />}
+            />
+            <Route
+              path="/teams"
+              element={
+                <TeamsPage
+                  standings={standings[0]}
+                  handleAddFavTeam={handleAddFavTeam}
+                  status={status}
+                  favTeam={favTeam}
+                />
+              }
+            />
+            <Route path="/teams/:teamID" element={<TeamInfo />} />
+            <Route
+              path="/favourite"
+              element={
+                <FavouritePage
+                  favTeam={favTeam}
+                  handleDeleteFavTeam={handleDeleteFavTeam}
+                />
+              }
+            />
+          </Routes>
+        )
+        // )}
+      }
     </div>
   );
 }

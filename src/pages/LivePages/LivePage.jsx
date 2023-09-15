@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import FixtureInfo from "./FixtureInfo/FixtureInfo";
 
-const FixturePage = ({ fixtures }) => {
+const LivePage = ({ fixtures }) => {
   const { matchID } = useParams();
   //filter the api response, filter out each fixture id to see if match the param
   //if yes, then give me the result
@@ -54,9 +54,16 @@ const FixturePage = ({ fixtures }) => {
           </div>
         </section>
         <div className="text-center">{fixture.fixture.status.long}</div>
-        <div className="text-center text-red-600">
-          {fixture.fixture.status.elapsed}`
-        </div>
+
+        {fixture.fixture.status.short === "HT" ? (
+          <div className="text-center text-red-600">
+            {fixture.fixture.status.short}
+          </div>
+        ) : (
+          <div className="text-center text-red-600">
+            {fixture.fixture.status.elapsed}`
+          </div>
+        )}
       </article>
 
       <FixtureInfo fixture={fixture} />
@@ -103,4 +110,4 @@ const FixturePage = ({ fixtures }) => {
   );
 };
 
-export default FixturePage;
+export default LivePage;
