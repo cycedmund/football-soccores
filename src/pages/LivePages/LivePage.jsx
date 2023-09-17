@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import SecNavbar from "../../components/Navbar/SecNavbar";
 
 const LivePage = ({ fixtures }) => {
+  console.log(fixtures);
   return (
     <>
       <SecNavbar />
-      <div className="grid grid-cols-1 text-white font-ox">
+      <main className="grid grid-cols-1 text-white font-ox">
         {fixtures.response.map((fixture) => {
           return (
             <Link to={`/live/${fixture.fixture.id}`} key={fixture.fixture.id}>
@@ -27,10 +28,12 @@ const LivePage = ({ fixtures }) => {
                   </p>
                 </header>
 
-                {/* <div className="text-center">{fixture.fixture.status.short}</div> */}
                 <div className="w-full flex p-1">
                   <div className="w-[10%] flex flex-col justify-center items-center text-red-600">
-                    {fixture.fixture.status.elapsed}`
+                    {fixture.fixture.status.short === "HT" ||
+                    fixture.fixture.status.short === "FT"
+                      ? `${fixture.fixture.status.short}`
+                      : `${fixture.fixture.status.elapsed}\``}
                   </div>
 
                   <article className="w-[90%]">
@@ -77,7 +80,7 @@ const LivePage = ({ fixtures }) => {
             </Link>
           );
         })}
-      </div>
+      </main>
     </>
   );
 };

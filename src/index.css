@@ -1,5 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Oxanium:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Oxanium:wght@500&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* body {
+  margin: 0;
+  background-image: url(./assets/wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+} */

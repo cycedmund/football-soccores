@@ -8,13 +8,13 @@ const TeamCard = ({ team, handleAddFavTeam, isFavourited }) => {
         <figure>
           <img src={team.logo} alt={team.name} width={100} />
         </figure>
-        <h2 className="card-title text-base mx-auto m-3">{team.name}</h2>
+        <h2 className="card-title text-xl mx-auto m-3">{team.name}</h2>
         <div className="card-actions justify-center">
           <Link to={`/teams/${team.id}`} className="btn btn-primary btn-xs">
             Squad
           </Link>
           <FiStar
-            className={`text-2xl ${
+            className={`text-2xl cursor-pointer ${
               isFavourited ? "fill-yellow-500 text-yellow-500" : ""
             }`}
             onClick={() => {

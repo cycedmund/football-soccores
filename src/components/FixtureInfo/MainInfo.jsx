@@ -50,14 +50,16 @@ const MainInfo = ({ fixture }) => {
         </header>
       )}
 
-      {secondHalfEvents.length > 0 ? (
-        <SecondHalfInfo
-          secondHalfEvents={secondHalfEvents}
-          teams={fixture.teams}
-        />
-      ) : (
-        <span className="m-5"> - </span>
-      )}
+      {(fixture.fixture.status.long === "Second Half" ||
+        fixture.fixture.status.short === "FT") &&
+        (secondHalfEvents.length > 0 ? (
+          <SecondHalfInfo
+            secondHalfEvents={secondHalfEvents}
+            teams={fixture.teams}
+          />
+        ) : (
+          <span className="m-5"> - </span>
+        ))}
     </div>
   );
 };

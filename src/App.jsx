@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import MainNavbar from "./components/Navbar/MainNavbar";
 import LivePage from "./pages/LivePages/LivePage";
@@ -10,7 +10,6 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import TeamInfo from "./pages/TeamPage/TeamInfo";
 import { data } from "./data/live-fixtures/dummy-live-data";
 import { dataStandings } from "./data/standings/dummy-standings";
-import { finisheddata } from "./data/finished-fixtures/finished";
 import doPostFavTeam from "./utils/crudapi/createapi";
 import doDeleteFavTeam from "./utils/crudapi/deleteapi";
 import doFetchFavTeam from "./utils/crudapi/readapi";
@@ -19,12 +18,10 @@ import FinishedInfoPage from "./pages/FinishedPage/FinishedInfoPage";
 import MainLineupTable from "./pages/FinishedPage/LineupTable/MainLineupTable";
 
 function App() {
-  const [fixtures, setFixtures] = useState([data]);
   // const [fixtures, setFixtures] = useState([]);
   // const [standings, setStandings] = useState([]);
-  const [standings, setStandings] = useState([dataStandings]);
-  const [finished, setFinished] = useState([finisheddata]);
-  // const [status, setStatus] = useState("idle");
+  const [fixtures, setFixtures] = useState(data);
+  const [standings, setStandings] = useState(dataStandings);
   const [status, setStatus] = useState("idle");
   const [searchResults, setSearchResults] = useState([]);
   const [favTeam, setFavTeam] = useState([]);
@@ -32,12 +29,16 @@ function App() {
 
   //? ========= fetch live data =========
 
+  useEffect(() => {
+    setStatus("success");
+  }, []);
+
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const urlLiveScores =
-  //       // "https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all";
+  //       "https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all";
   //     const urlStandings =
-  //       // "https://api-football-v1.p.rapidapi.com/v3/standings?season=2023&league=39";
+  //       "https://api-football-v1.p.rapidapi.com/v3/standings?season=2023&league=39";
   //     const options = {
   //       method: "GET",
   //       headers: {
@@ -48,7 +49,7 @@ function App() {
   //     };
 
   //     try {
-  // setStatus("loading");
+  //       setStatus("loading");
   //       const responses = await Promise.all([
   //         fetch(urlLiveScores, options),
   //         fetch(urlStandings, options),
@@ -71,20 +72,9 @@ function App() {
   //       console.error(error);
   //     }
   //   };
-  //   // fetchData();
+  //   fetchData();
   // }, []);
 
-  // if (status === "loading") {
-  //   return (
-  //     <div className="flex h-5/6 items-center justify-center">
-  //       <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
-  //     </div>
-  //   );
-  // }
-
-  // if (status === "error") {
-  //   return <h2>Something went wrong...</h2>;
-  // }
   //? ========= fetch live data =========
 
   const handleSearch = (searchInput) => {
@@ -108,13 +98,28 @@ function App() {
     fetchFavTeamData();
   }, []);
 
+  const addFavInProgress = useRef(false);
+
   const handleAddFavTeam = async (name, teamid, logo) => {
-    if (favTeam.some((team) => team.teamid === teamid)) {
-      const deleteFavTeam = favTeam.find((team) => team.teamid === teamid);
-      handleDeleteFavTeam(deleteFavTeam.id);
-    } else {
-      const jsonData = await doPostFavTeam(name, teamid, logo);
-      setFavTeam([...favTeam, { ...jsonData.fields, id: jsonData.id }]);
+    if (addFavInProgress.current) {
+      return <progress className="progress w-56"></progress>;
+    }
+
+    addFavInProgress.current = true;
+
+    try {
+      if (favTeam.some((team) => team.teamid === teamid)) {
+        const deleteFavTeam = favTeam.find((team) => team.teamid === teamid);
+        handleDeleteFavTeam(deleteFavTeam.id);
+      } else {
+        const jsonData = await doPostFavTeam(name, teamid, logo);
+        setFavTeam([...favTeam, { ...jsonData.fields, id: jsonData.id }]);
+        addFavInProgress.current = true;
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      addFavInProgress.current = false;
     }
   };
 
@@ -169,19 +174,20 @@ function App() {
         </div>
       )}
 
-      {status === "error" && <h2>Something went wrong...</h2>}
+      {status === "error" && <ErrorPage />}
 
-      {/* {status === "success" && ( */}
+      {/* {
+        fixtures.length !== 0 && ( */}
       {
-        fixtures.length !== 0 && (
+        status === "success" && (
           <Routes>
             {/* change to data={fixtures} */}
-            <Route path="/" element={<LivePage fixtures={fixtures[0]} />} />
+            <Route path="/" element={<LivePage fixtures={fixtures} />} />
             <Route path="/finished" element={<FinishedPage />} />
             {/* see if can merge main into finished */}
             <Route
               path="/live/:matchID"
-              element={<LiveInfoPage fixtures={fixtures[0]} />}
+              element={<LiveInfoPage fixtures={fixtures} />}
             />
             <Route path="/finished/:matchID" element={<FinishedInfoPage />}>
               <Route
@@ -191,13 +197,13 @@ function App() {
             </Route>
             <Route
               path="/standings"
-              element={<StandingPage standings={standings[0]} />}
+              element={<StandingPage standings={standings} />}
             />
             <Route
               path="/teams"
               element={
                 <TeamsPage
-                  standings={standings[0]}
+                  standings={standings}
                   handleAddFavTeam={handleAddFavTeam}
                   status={status}
                   favTeam={favTeam}

@@ -2,11 +2,18 @@ import MainInfo from "../../components/FixtureInfo/MainInfo";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { arsdata } from "../../data/finished-fixtures/detailsArs";
+import { isValidID } from "../../utils/IDcheck/isValidID";
+import ErrorPage from "../ErrorPage/ErrorPage";
 
 const FinishedInfoPage = () => {
   const [matchEvents, setMatchEvents] = useState(arsdata); //should be null
   const { matchID } = useParams();
   const numMatchId = parseInt(matchID);
+
+  const checkInvalidID = isValidID(matchEvents.response, matchID);
+  if (!checkInvalidID) {
+    return <ErrorPage />;
+  }
 
   // useEffect(() => {
   //   const fetchEvent = async () => {

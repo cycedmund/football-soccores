@@ -1,8 +1,17 @@
-import { useParams } from "react-router-dom";
 import MainInfo from "../../components/FixtureInfo/MainInfo";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import { useParams } from "react-router-dom";
+import { isValidID } from "../../utils/IDcheck/isValidID";
+import MatchTimer from "../../components/MatchTimer/MatchTimer";
 
 const LiveInfoPage = ({ fixtures }) => {
   const { matchID } = useParams();
+
+  const checkInvalidID = isValidID(fixtures.response, matchID);
+  if (!checkInvalidID) {
+    return <ErrorPage />;
+  }
+
   //filter the api response, filter out each fixture id to see if match the param
   //if yes, then give me the result
   const results = fixtures.response.filter((match) => {
@@ -64,6 +73,7 @@ const LiveInfoPage = ({ fixtures }) => {
         ) : (
           <div className="text-center text-red-600">
             {fixture.fixture.status.elapsed}`
+            <MatchTimer date={fixture.fixture.date} />
           </div>
         )}
       </article>

@@ -17,10 +17,6 @@ const MainNavbar = ({ handleSearch, standings }) => {
     setSearchInput("");
   };
 
-  // const handleSearch = () => {
-  //   onSearch(searchInput);
-  // };
-
   return (
     <nav className="navbar bg-base-100 font-ox" data-theme="luxury">
       <div className="navbar-start">
@@ -93,6 +89,7 @@ const MainNavbar = ({ handleSearch, standings }) => {
                   .map((result) => (
                     <li
                       key={result.team.id}
+                      className="cursor-pointer"
                       onClick={() => handleSearchSuggestion(result)}
                     >
                       {result.team.name}
