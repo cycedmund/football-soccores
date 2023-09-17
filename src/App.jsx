@@ -6,6 +6,7 @@ import LiveInfoPage from "./pages/LivePages/LiveInfoPage";
 import StandingPage from "./pages/StandingPage/StandingPage";
 import FavouritePage from "./pages/FavouritePage/FavouritePage";
 import TeamsPage from "./pages/TeamPage/TeamsPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import TeamInfo from "./pages/TeamPage/TeamInfo";
 import { data } from "./data/live-fixtures/dummy-live-data";
 import { dataStandings } from "./data/standings/dummy-standings";
@@ -213,6 +214,7 @@ function App() {
                 />
               }
             />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         )
         // )}

@@ -3,16 +3,16 @@ import HomeRow from "./HomeRow";
 import AwayRow from "./AwayRow";
 
 const MainLineupTable = () => {
-  const [matchEvents, setMatchEvents] = useOutletContext();
+  const [matchEvents] = useOutletContext();
   const homeTeam = matchEvents.response[0].lineups[0].startXI;
   const awayTeam = matchEvents.response[0].lineups[1].startXI;
 
-  const findMatching = (index, playerName) => {
-    const players = matchEvents.response[0].players[index].players;
-    const playerLastName = playerName.split(" ").pop();
-    return players.find((name) => {
-      const nameLastName = name.player.name.split(" ").pop();
-      return playerLastName === nameLastName;
+  const findMatching = (index, playerId) => {
+    const allPlayers = matchEvents.response[0].players[index].players;
+    const checkLineupId = playerId;
+    return allPlayers.find((name) => {
+      const checkAllPlayersId = name.player.id;
+      return checkLineupId === checkAllPlayersId;
     });
   };
 
@@ -33,11 +33,15 @@ const MainLineupTable = () => {
             </thead>
             <tbody>
               {homeTeam.map((player) => {
-                const matchingPlayer = findMatching(0, player.player.name);
+                const matchingPlayer = findMatching(0, player.player.id);
                 return (
                   <HomeRow
                     key={player.player.id}
-                    name={player.player.name}
+                    name={
+                      matchingPlayer
+                        ? matchingPlayer.player.name
+                        : player.player.name
+                    }
                     pos={player.player.pos}
                     num={player.player.number}
                     team={matchEvents.response[0].teams.home}
@@ -58,11 +62,15 @@ const MainLineupTable = () => {
             </thead>
             <tbody>
               {awayTeam.map((player) => {
-                const matchingPlayer = findMatching(1, player.player.name);
+                const matchingPlayer = findMatching(1, player.player.id);
                 return (
-                  <HomeRow
+                  <AwayRow
                     key={player.player.id}
-                    name={player.player.name}
+                    name={
+                      matchingPlayer
+                        ? matchingPlayer.player.name
+                        : player.player.name
+                    }
                     pos={player.player.pos}
                     num={player.player.number}
                     team={matchEvents.response[0].teams.away}

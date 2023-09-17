@@ -131,7 +131,7 @@ const FinishedInfoPage = () => {
         <dd className="p-2">Country - {fixture.league.country}</dd>
         <dd className="p-2">{fixture.league.round}</dd>
       </dl>
-      <Outlet context={[matchEvents, setMatchEvents]} />
+      <Outlet context={[matchEvents]} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import { PiSoccerBallFill } from "react-icons/pi";
 import { TbCards } from "react-icons/tb";
-import { GiCycle } from "react-icons/gi";
+import { GiCycle, GiReturnArrow } from "react-icons/gi";
 import { SlScreenDesktop } from "react-icons/sl";
 
 const SecondHalfInfo = ({ secondHalfEvents, teams }) => {
@@ -22,7 +22,14 @@ const SecondHalfInfo = ({ secondHalfEvents, teams }) => {
 
             {event.type === "Goal" ? (
               <section className="flex items-center">
-                <PiSoccerBallFill className="text-2xl mx-2" />
+                {event.detail === "Own Goal" ? (
+                  <i className="text-red-600 mx-2">
+                    <GiReturnArrow className="text-l" />
+                    <PiSoccerBallFill className="text-2xl" />
+                  </i>
+                ) : (
+                  <PiSoccerBallFill className="text-2xl mx-2" />
+                )}
                 <div className="flex flex-col">
                   {event.player.name}
                   <span className="text-gray-600">
@@ -42,7 +49,7 @@ const SecondHalfInfo = ({ secondHalfEvents, teams }) => {
               </section>
             ) : event.detail.includes("ubs") ? (
               <section className="flex items-center">
-                <GiCycle className="text-2xl text-green-700 mx-2" />
+                <GiCycle className="text-2xl text-sky-700 mx-2" />
                 <div className="flex flex-col">
                   <span>In: {event.assist.name}</span>
                   <span className="text-gray-600">
@@ -74,7 +81,14 @@ const SecondHalfInfo = ({ secondHalfEvents, teams }) => {
                     {event.assist.name !== null && `(${event.assist.name})`}
                   </span>
                 </div>
-                <PiSoccerBallFill className="text-2xl mx-2" />
+                {event.detail === "Own Goal" ? (
+                  <i className="text-red-600 mx-2">
+                    <GiReturnArrow className="text-l" />
+                    <PiSoccerBallFill className="text-2xl" />
+                  </i>
+                ) : (
+                  <PiSoccerBallFill className="text-2xl mx-2" />
+                )}
               </section>
             ) : event.detail === "Yellow Card" ? (
               <section className="flex items-center">
@@ -94,7 +108,7 @@ const SecondHalfInfo = ({ secondHalfEvents, teams }) => {
                     Out: {`(${event.player.name})`}
                   </span>
                 </div>
-                <GiCycle className="text-2xl text-green-700 mx-2" />
+                <GiCycle className="text-2xl text-sky-700 mx-2" />
               </section>
             ) : (
               <section className="flex items-center">
