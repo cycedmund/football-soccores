@@ -1,34 +1,29 @@
-import { squadData } from "../../data/squad/dummy-squad";
+import { squadData } from "../../data/squad/mock-squad";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { isValidTeamID } from "../../utils/IDcheck/isValidTeamID";
+import ErrorPage from "../ErrorPage/ErrorPage";
+import { doFetchTeam } from "../../utils/footballapi/teamAPI/fetchTeamAPI";
 
 const TeamInfo = () => {
-  const [playersInfo, setPlayersInfo] = useState(squadData); //supposed to be null
+  const [playersInfo, setPlayersInfo] = useState(null); //supposed to be null
   const { teamID } = useParams();
   const idToNum = parseInt(teamID);
 
   // useEffect(() => {
-  //   const fetchSquadData = async () => {
-  //     // const url = `https://api-football-v1.p.rapidapi.com/v3/players/squads?team=${idToNum}`;
-  //     const options = {
-  //       method: "GET",
-  //       headers: {
-  //         "X-RapidAPI-Key":
-  //           "7b08966adamsh59c126ab85a1048p162786jsn12d7f9e32f8c",
-  //         "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-  //       },
-  //     };
-  //     try {
-  //       const response = await fetch(url, options);
-  //       const data = await response.json();
-  //       console.log("raw", data);
-  //       setPlayersInfo(data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
+  //   const fetchTeamData = async (idToNum) => {
+  //     const teamData = await doFetchTeam(idToNum);
+  //     setPlayersInfo(teamData);
   //   };
-  //   fetchSquadData();
+  //   fetchTeamData(idToNum);
   // }, [idToNum]);
+
+  if (playersInfo) {
+    const checkInvalidID = isValidTeamID(playersInfo.response, teamID);
+    if (!checkInvalidID) {
+      return <ErrorPage />;
+    }
+  }
 
   if (!playersInfo) {
     return (

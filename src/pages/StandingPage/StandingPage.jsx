@@ -7,10 +7,9 @@ const StandingPage = ({ standings }) => {
     </div>
   ) : (
     <div className="overflow-x-auto bg-gray-900 text-white">
-      <table className="table text-base">
-        {/* head */}
+      <table className="table text-lg">
         <thead>
-          <tr className="text-center">
+          <tr className="text-center text-lg">
             <th>#</th>
             <th>Team</th>
             <th></th>
@@ -27,14 +26,20 @@ const StandingPage = ({ standings }) => {
         <tbody>
           {standings.response[0].league.standings[0].map((club) => (
             <tr key={club.team.id} className="text-center bg-gray-800">
-              <td className="badge badge-outline badge-md mt-5">{club.rank}</td>
+              <td
+                className={`badge badge-lg mt-5 ${
+                  club.rank <= 4 ? `badge-primary` : `badge-ghost`
+                }`}
+              >
+                {club.rank}
+              </td>
               <td>
                 <Link to={`/teams/${club.team.id}`}>
                   <img
                     className="mx-auto hover"
                     src={club.team.logo}
                     alt={club.team.name}
-                    width={40}
+                    width={50}
                   />
                 </Link>
               </td>
@@ -48,7 +53,25 @@ const StandingPage = ({ standings }) => {
               </td>
               <td>{club.goalsDiff}</td>
               <td>{club.points}</td>
-              <td>{club.form}</td>
+              <td>
+                {club.form
+                  .slice(0, 5)
+                  .split("")
+                  .map((result, index) => (
+                    <kbd
+                      className={`kbd kbd-sm p-1 ${
+                        result === "W"
+                          ? "bg-green-800"
+                          : result === "L"
+                          ? "bg-red-800"
+                          : "bg-gray-800"
+                      }`}
+                      key={index}
+                    >
+                      {result}
+                    </kbd>
+                  ))}
+              </td>
             </tr>
           ))}
         </tbody>

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SecNavbar from "../../components/Navbar/SecNavbar";
 
-const FinishedPage = ({ otherFixtures }) => {
+const ScheduledPage = ({ otherFixtures }) => {
   return (
     <>
       <SecNavbar />
@@ -10,14 +10,20 @@ const FinishedPage = ({ otherFixtures }) => {
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
         </div>
       ) : (
-        <main className="grid grid-cols-1 text-white font-ox">
+        <div className="grid grid-cols-1 text-white font-ox">
           {otherFixtures.response
-            .filter((fixture) => fixture.fixture.status.short === "FT")
-            .sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date))
+            .filter((fixture) => fixture.fixture.status.short === "NS")
+            .sort((a, b) => new Date(a.fixture.date) - new Date(b.fixture.date))
             .map((fixture) => {
+              const date = new Date(fixture.fixture.date);
+              const day = date.getDate().toString().padStart(2, "0");
+              const month = date.toLocaleString("en-US", { month: "short" });
+              const year = date.getFullYear().toString().slice(-2);
+              const hours = date.getHours().toString().padStart(2, "0");
+              const minutes = date.getMinutes().toString().padStart(2, "0");
               return (
                 <Link
-                  to={`/finished/${fixture.fixture.id}`}
+                  to={`/scheduled/${fixture.fixture.id}`}
                   key={fixture.fixture.id}
                 >
                   <div className="bg-slate-900 items-center">
@@ -39,8 +45,10 @@ const FinishedPage = ({ otherFixtures }) => {
                     </header>
 
                     <div className="w-full flex p-1">
-                      <div className="w-[10%] flex flex-col justify-center items-center text-white">
-                        {fixture.fixture.status.short}
+                      <div className="w-[10%] flex flex-col justify-center items-center text-center text-orange-800">
+                        {`${day}-${month}-${year}`}
+                        <br />
+                        {`${hours}${minutes}H`}
                       </div>
 
                       <article className="w-[90%]">
@@ -54,14 +62,7 @@ const FinishedPage = ({ otherFixtures }) => {
                             />
                           </figure>
 
-                          <p
-                            className={`w-[70%] text-left ${
-                              !fixture.teams.home.winner &&
-                              fixture.teams.home.winner !== null
-                                ? "text-gray-700"
-                                : null
-                            }`}
-                          >
+                          <p className="w-[70%] text-left">
                             {fixture.teams.home.name}
                           </p>
 
@@ -80,14 +81,7 @@ const FinishedPage = ({ otherFixtures }) => {
                             />
                           </figure>
 
-                          <p
-                            className={`w-[70%] text-left ${
-                              !fixture.teams.away.winner &&
-                              fixture.teams.away.winner !== null
-                                ? "text-gray-700"
-                                : null
-                            }`}
-                          >
+                          <p className="w-[70%] text-left">
                             {fixture.teams.away.name}
                           </p>
 
@@ -101,10 +95,10 @@ const FinishedPage = ({ otherFixtures }) => {
                 </Link>
               );
             })}
-        </main>
+        </div>
       )}
     </>
   );
 };
 
-export default FinishedPage;
+export default ScheduledPage;

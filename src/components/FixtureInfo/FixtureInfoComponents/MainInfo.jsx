@@ -11,16 +11,21 @@ const MainInfo = ({ fixture }) => {
 
   return (
     <div className="grid grid-cols-1 text-center text-white">
-      <header className="bg-slate-800 text-center">
-        <h2>
-          First Half{" "}
-          {fixture.score.halftime.home !== null && (
-            <span>
-              [{fixture.score.halftime.home} - {fixture.score.halftime.away}]
-            </span>
-          )}
-        </h2>
-      </header>
+      {fixture.fixture.status.short === "NS" ? (
+        <header className="bg-slate-800 text-center">No Details</header>
+      ) : (
+        <header className="bg-slate-800 text-center">
+          <h2>
+            First Half{" "}
+            {fixture.score.halftime.home !== null && (
+              <span>
+                [{fixture.score.halftime.home} - {fixture.score.halftime.away}]
+              </span>
+            )}
+          </h2>
+        </header>
+      )}
+
       {fixture.events.length === 0 ? (
         <span className="m-5"> - </span>
       ) : (

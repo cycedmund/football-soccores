@@ -1,23 +1,13 @@
-import ErrorPage from "../ErrorPage/ErrorPage";
 import TeamCard from "./TeamCard";
 
-const TeamsPage = ({ standings, handleAddFavTeam, status, favTeam }) => {
+const TeamsPage = ({ standings, handleAddFavTeam, favTeam }) => {
   return (
     <>
-      {status === "loading" && (
+      {standings.length === 0 ? (
         <div className="flex h-5/6 items-center justify-center">
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
         </div>
-      )}
-
-      {status === "error" && <ErrorPage />}
-
-      {/* {standings.length === 0 ? (
-        <div className="flex h-5/6 items-center justify-center">
-          <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
-        </div>
-      ) : ( */}
-      {status === "success" && (
+      ) : (
         <div className="grid grid-cols-3 gap-10 py-10 bg-slate-900">
           {standings.response[0].league.standings[0].map((club) => {
             const isFavourited = favTeam.some(

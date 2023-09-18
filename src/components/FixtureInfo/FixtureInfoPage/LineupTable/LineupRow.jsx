@@ -1,8 +1,14 @@
+import { VscJersey } from "react-icons/vsc";
+
 const HomeRow = ({ name, pos, num, team, img }) => {
-  // console.log(img);
   return (
     <tr>
-      <td>{num}</td>
+      <td className="relative">
+        <VscJersey className="mx-auto text-5xl" />
+        <span className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-yellow-500">
+          {num}
+        </span>
+      </td>
       <td>
         <div className="flex items-center space-x-3">
           <div className="avatar">
@@ -10,7 +16,7 @@ const HomeRow = ({ name, pos, num, team, img }) => {
               <img src={img} alt={name} />
             </div>
           </div>
-          <div>
+          <div className="text-left">
             <div className="font-bold">{name}</div>
             <div className="text-sm opacity-50">{team.name}</div>
           </div>
