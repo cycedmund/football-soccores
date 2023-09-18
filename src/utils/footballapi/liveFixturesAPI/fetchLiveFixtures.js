@@ -1,4 +1,6 @@
 export const doFetchLiveFixtures = async () => {
+  // const urlLiveScores =
+  //   "https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all&league=39";
   const urlLiveScores =
     "https://api-football-v1.p.rapidapi.com/v3/fixtures?live=all";
   const options = {

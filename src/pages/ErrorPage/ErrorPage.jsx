@@ -12,7 +12,7 @@ const ErrorPage = () => {
         <section className="relative inline-block text-sm font-medium text-white group active:text-white focus:outline-none focus:ring">
           <span className="block px-5 py-3 bg-slate-900 border border-current">
             <Link to="/">
-              <TbHomeMove className="text-5xl" />
+              <TbHomeMove className="text-4xl" />
             </Link>
           </span>
         </section>

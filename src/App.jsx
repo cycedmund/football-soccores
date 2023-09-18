@@ -34,6 +34,25 @@ function App() {
   }, []);
 
   // useEffect(() => {
+  //   const fetchBothData = async () => {
+  //     try {
+  //       setStatus("loading");
+  //       const [nonLiveFixturesData, standingsData] = await Promise.all([
+  //         doFetchNonLiveFixtures(),
+  //         doFetchStandings(),
+  //       ]);
+  //       setOtherFixtures(nonLiveFixturesData);
+  //       setStandings(standingsData);
+  //       setStatus("success");
+  //     } catch (error) {
+  //       console.error(error);
+  //       setStatus("error");
+  //     }
+  //   };
+  //   fetchBothData();
+  // }, []);
+
+  // useEffect(() => {
   //   const fetchNonLiveFixtures = async () => {
   //     const nonLiveFixturesData = await doFetchNonLiveFixtures();
   //     setOtherFixtures(nonLiveFixturesData);
@@ -79,7 +98,6 @@ function App() {
 
   const handleAddFavTeam = async (name, teamid, logo) => {
     if (addFavInProgress.current) return;
-
     addFavInProgress.current = true;
 
     try {
@@ -108,7 +126,7 @@ function App() {
   };
 
   return (
-    <div className="w-full-md:w-[700px] lg:w-[850px] h-screen m-auto">
+    <div className="w-full-md:w-[700px] lg:w-[880px] h-screen m-auto">
       <MainNavbar
         searchResults={searchResults}
         handleSearch={handleSearch}
@@ -143,7 +161,7 @@ function App() {
             </Route>
             <Route
               path="/standings"
-              element={<StandingPage standings={standings} status={status} />}
+              element={<StandingPage standings={standings} />}
             />
             <Route
               path="/teams"
@@ -151,7 +169,6 @@ function App() {
                 <TeamsPage
                   standings={standings}
                   handleAddFavTeam={handleAddFavTeam}
-                  status={status}
                   favTeam={favTeam}
                 />
               }
@@ -161,7 +178,7 @@ function App() {
               element={<TeamInfo standings={standings} />}
             />
             <Route
-              path="/favourite"
+              path="/favourites"
               element={
                 <FavouritePage
                   favTeam={favTeam}
