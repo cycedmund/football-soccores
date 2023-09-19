@@ -37,7 +37,7 @@ const LivePage = () => {
   return (
     <>
       <SecNavbar />
-      {liveFixtures.length === 0 ? (
+      {liveFixtures.response === 0 ? (
         <div className="flex h-5/6 items-center justify-center">
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
         </div>

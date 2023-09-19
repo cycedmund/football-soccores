@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import MainNavbar from "./components/Navbar/MainNavbar";
+import Footer from "./components/Footer/Footer";
 import LivePage from "./pages/LivePages/LivePage";
 import FixtureInfoPage from "./components/FixtureInfo/FixtureInfoPage/FixtureInfoPage";
 import StandingPage from "./pages/StandingPage/StandingPage";
@@ -191,6 +192,7 @@ function App() {
         )
         // )}
       }
+      <Footer />
     </div>
   );
 }

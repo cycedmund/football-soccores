@@ -12,6 +12,9 @@ export default {
         mybig: ["52px", "60px"],
         mymed: ["28px", "36px"],
       },
+      backgroundImage: {
+        epl: "url('./src/assets/wallpaper.jpg')",
+      },
     },
   },
   plugins: [daisyui],

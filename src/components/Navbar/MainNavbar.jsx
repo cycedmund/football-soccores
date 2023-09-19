@@ -39,9 +39,11 @@ const MainNavbar = ({ handleSearch, standings }) => {
             </li>
           </ul>
         </div>
-        <NavLink to="/" className="btn btn-ghost text-cyan-600 text-2xl">
+        <NavLink to="/" className="btn btn-ghost text-white text-2xl">
           <GiSoccerKick className="text-5xl text-emerald-600" />
-          SOCCORES
+          <div>
+            SOC<span className="text-red-600">CORES</span>
+          </div>
         </NavLink>
       </div>
       <div className="hidden lg:flex navbar-center">

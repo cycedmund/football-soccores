@@ -9,8 +9,8 @@ const FavouritePage = ({ favTeam, handleDeleteFavTeam }) => {
       <main className="grid grid-cols-2 gap-4 py-10 ">
         {sortedFavTeam.map((team) => {
           return (
-            <div
-              className="card w-96 border-4 border-yellow-600 pt-5"
+            <section
+              className="card w-96 border-4 border-yellow-600/50 pt-5"
               key={team.teamid}
             >
               <figure>
@@ -30,7 +30,7 @@ const FavouritePage = ({ favTeam, handleDeleteFavTeam }) => {
                   </button>
                 </div>
               </div>
-            </div>
+            </section>
           );
         })}
       </main>
