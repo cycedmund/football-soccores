@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import SecNavbar from "../../components/Navbar/SecNavbar";
 import { doFetchLiveFixtures } from "../../utils/footballapi/liveFixturesAPI/fetchLiveFixtures";
 import { data } from "../../data/live-fixtures/mock-live-data";
+import { GiSoccerKick } from "react-icons/gi";
 
 const LivePage = () => {
-  // const [liveFixtures, setLiveFixtures] = useState([]);
+  // const [liveFixtures, setLiveFixtures] = useState(null);
   const [liveFixtures, setLiveFixtures] = useState(data);
 
   // useEffect(() => {
   //   const fetchLiveFixturesData = async () => {
   //     const liveFixturesData = await doFetchLiveFixtures();
   //     setLiveFixtures(liveFixturesData);
+  //     console.log(liveFixturesData);
   //   };
 
   //   fetchLiveFixturesData();
@@ -37,10 +39,17 @@ const LivePage = () => {
   return (
     <>
       <SecNavbar />
-      {liveFixtures.response === 0 ? (
-        <div className="flex h-5/6 items-center justify-center">
+      {liveFixtures === null ? (
+        <main className="flex h-[94%] items-center justify-center">
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
-        </div>
+        </main>
+      ) : liveFixtures.response.length === 0 ? (
+        <main className="flex h-[73%] items-center justify-center text-center">
+          <section className="flex flex-col items-center">
+            <GiSoccerKick className="text-6xl mx-auto" />
+            <div className="mt-4">NO LIVE MATCHES AT THE MOMENT</div>
+          </section>
+        </main>
       ) : (
         <main className="grid grid-cols-1 text-white font-ox">
           {liveFixtures.response.map((fixture) => {

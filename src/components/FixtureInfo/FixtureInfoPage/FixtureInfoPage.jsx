@@ -12,9 +12,9 @@ const FixtureInfoPage = () => {
   const { matchID, matchStatus } = useParams();
   const numMatchId = parseInt(matchID);
 
-  //   useEffect(() => {
+  // useEffect(() => {
   //   const fetchEachFixtureData = async (numMatchId) => {
-  //     const eachFixtureData = await doFetchEachFixture(numMatchId)
+  //     const eachFixtureData = await doFetchEachFixture(numMatchId);
   //     setMatchEvents(eachFixtureData);
   //   };
   //   fetchEachFixtureData(numMatchId);
@@ -37,7 +37,7 @@ const FixtureInfoPage = () => {
 
   if (!matchEvents) {
     return (
-      <div className="flex h-5/6 items-center justify-center">
+      <div className="flex h-[80%] items-center justify-center">
         <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
       </div>
     );

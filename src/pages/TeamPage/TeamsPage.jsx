@@ -7,7 +7,7 @@ const TeamsPage = ({ standings, handleAddFavTeam, favTeam }) => {
   return (
     <>
       {sortedStandings.length === 0 ? (
-        <div className="flex h-5/6 items-center justify-center">
+        <div className="flex h-[80%] items-center justify-center">
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
         </div>
       ) : (

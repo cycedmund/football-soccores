@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import MainNavbar from "./components/Navbar/MainNavbar";
 import Footer from "./components/Footer/Footer";
-import LivePage from "./pages/LivePages/LivePage";
+import LivePage from "./pages/LivePage/LivePage";
 import FixtureInfoPage from "./components/FixtureInfo/FixtureInfoPage/FixtureInfoPage";
 import StandingPage from "./pages/StandingPage/StandingPage";
 import FavouritePage from "./pages/FavouritePage/FavouritePage";
@@ -18,9 +18,11 @@ import ScheduledPage from "./pages/ScheduledPage/ScheduledPage";
 import MainLineupTable from "./components/FixtureInfo/FixtureInfoPage/LineupTable/MainLineupTable";
 import { doFetchStandings } from "./utils/footballapi/standingsAPI/fetchStandings";
 import { doFetchNonLiveFixtures } from "./utils/footballapi/otherFixturesAPI/fetchNonLiveFixtures";
+import { mockOtherFixtures } from "./data/nonlivefixtures/nonlivefixtures-mock";
 
 function App() {
-  const [otherFixtures, setOtherFixtures] = useState([]);
+  // const [otherFixtures, setOtherFixtures] = useState(null);
+  const [otherFixtures, setOtherFixtures] = useState(mockOtherFixtures);
   // const [standings, setStandings] = useState([]);
   const [standings, setStandings] = useState(dataStandings);
   const [status, setStatus] = useState("idle");
@@ -75,8 +77,8 @@ function App() {
   //? ========= fetch live data =========
 
   const handleSearch = (searchInput) => {
-    const results = standings[0].response[0].league.standings[0].filter(
-      (team) => team.team.name.toLowerCase().includes(searchInput.toLowerCase())
+    const results = standings.response[0].league.standings[0].filter((team) =>
+      team.team.name.toLowerCase().includes(searchInput.toLowerCase())
     );
 
     if (results.length === 1) {
@@ -135,7 +137,7 @@ function App() {
       />
 
       {status === "loading" && (
-        <div className="flex h-5/6 items-center justify-center">
+        <div className="flex h-[80%] items-center justify-center">
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
         </div>
       )}
