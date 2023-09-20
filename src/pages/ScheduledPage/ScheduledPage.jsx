@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import SecNavbar from "../../components/Navbar/SecNavbar";
-import Datepicker from "react-tailwindcss-datepicker";
 import useDatePicker from "../../hooks/useDatePicker";
 
 const ScheduledPage = ({
@@ -9,7 +8,7 @@ const ScheduledPage = ({
   isToggleChecked,
   handleToggleChange,
 }) => {
-  const { value, handleValueChange } = useDatePicker();
+  const { dateInput, handleDateInputChange } = useDatePicker();
 
   const groupFixturesByDate = {};
 
@@ -35,11 +34,11 @@ const ScheduledPage = ({
 
   const filteredFixtures = Object.entries(groupFixturesByDate).filter(
     ([date]) => {
-      if (!value.startDate || !value.endDate) return true;
+      if (!dateInput.startDate || !dateInput.endDate) return true;
       const currentDate = new Date(date);
       return (
-        currentDate >= new Date(value.startDate) &&
-        currentDate <= new Date(value.endDate)
+        currentDate >= new Date(dateInput.startDate) &&
+        currentDate <= new Date(dateInput.endDate)
       );
     }
   );
@@ -63,15 +62,9 @@ const ScheduledPage = ({
         className="relative"
         isToggleChecked={isToggleChecked}
         handleToggleChange={handleToggleChange}
+        dateInput={dateInput}
+        handleDateInputChange={handleDateInputChange}
       />
-      <div className="absolute top-[134px] right-[290px] w-[22%]">
-        <Datepicker
-          i18n={"en-sg"}
-          primaryColor={"blue"}
-          value={value}
-          onChange={handleValueChange}
-        />
-      </div>
       {otherFixtures === null ? (
         <div className="flex h-[80%] items-center justify-center">
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>

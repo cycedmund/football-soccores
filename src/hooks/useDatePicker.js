@@ -1,16 +1,16 @@
 import { useState } from "react";
 
 const useDatePicker = () => {
-  const [value, setValue] = useState({
+  const [dateInput, setDateInput] = useState({
     startDate: null,
     endDate: null,
   });
 
-  const handleValueChange = (newValue) => {
-    setValue(newValue);
+  const handleDateInputChange = (input) => {
+    setDateInput(input);
   };
 
-  return { value, handleValueChange };
+  return { dateInput, handleDateInputChange };
 };
 
 export default useDatePicker;
