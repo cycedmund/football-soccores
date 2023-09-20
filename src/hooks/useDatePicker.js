@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useDatePicker = () => {
+const useDatePicker = () => {
   const [value, setValue] = useState({
     startDate: null,
     endDate: null,
@@ -12,3 +12,5 @@ export const useDatePicker = () => {
 
   return { value, handleValueChange };
 };
+
+export default useDatePicker;

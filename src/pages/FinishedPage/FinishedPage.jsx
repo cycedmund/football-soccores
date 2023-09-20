@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SecNavbar from "../../components/Navbar/SecNavbar";
 import Datepicker from "react-tailwindcss-datepicker";
-import { useDatePicker } from "../../hooks/useDatePicker";
+import useDatePicker from "../../hooks/useDatePicker";
 
 const FinishedPage = ({
   otherFixtures,
@@ -53,12 +53,9 @@ const FinishedPage = ({
             team.name === fixture.teams.away.name
         );
       });
-      console.log("1", fixturesOfFavTeam);
       return [date, fixturesOfFavTeam];
     })
     .filter(([, fixtures]) => fixtures.length > 0);
-
-  console.log("2", favTeamFixtures);
 
   return (
     <>
@@ -96,7 +93,7 @@ const FinishedPage = ({
                 {fixtures.map((fixture) => {
                   return (
                     <Link
-                      to={`/scheduled/${fixture.fixture.id}`}
+                      to={`/finished/${fixture.fixture.id}`}
                       key={fixture.fixture.id}
                     >
                       <div className="bg-slate-900">

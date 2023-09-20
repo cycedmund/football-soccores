@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import SecNavbar from "../../components/Navbar/SecNavbar";
 import Datepicker from "react-tailwindcss-datepicker";
-import { useDatePicker } from "../../hooks/useDatePicker";
+import useDatePicker from "../../hooks/useDatePicker";
 
 const ScheduledPage = ({
   otherFixtures,

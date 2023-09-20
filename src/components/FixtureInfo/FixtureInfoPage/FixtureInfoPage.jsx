@@ -1,16 +1,23 @@
 import { useState, useEffect } from "react";
-import { NavLink, Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { GiSoccerField } from "react-icons/gi";
 import MainInfo from "../FixtureInfoComponents/MainInfo";
 // import MatchTimer from "../../MatchTimer/MatchTimer";
 import ErrorPage from "../../../pages/ErrorPage/ErrorPage";
 import { isValidFixtureID } from "../../../utils/IDcheck/isValidFixtureID";
 import { doFetchEachFixture } from "../../../utils/footballapi/eachFixtureAPI/fetchEachFixture";
+import { arsdata } from "../../../data/finished-fixtures/detailsArs";
+import useLineupToggle from "../../../hooks/useLineupToggle";
 
 const FixtureInfoPage = () => {
-  const [matchEvents, setMatchEvents] = useState(null); //should be null
+  // const [matchEvents, setMatchEvents] = useState(null);
+  const [matchEvents, setMatchEvents] = useState(arsdata);
   const { matchID, matchStatus } = useParams();
   const numMatchId = parseInt(matchID);
+  const { isLineupShown, handleLineupShown } = useLineupToggle(
+    matchStatus,
+    matchID
+  );
 
   // useEffect(() => {
   //   const fetchEachFixtureData = async (numMatchId) => {
@@ -124,13 +131,20 @@ const FixtureInfoPage = () => {
 
       <section className="grid grid-cols-1 text-center">
         <header className="flex items-center justify-center w-full bg-slate-800 space-x-10 py-1">
-          <NavLink to={`/${matchStatus}/${matchID}`}>Details</NavLink>
-          <NavLink
-            className="border-2 p-1"
-            to={`/${matchStatus}/${matchID}/lineups`}
-          >
-            Lineups
-          </NavLink>
+          <h2>Details</h2>
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text text-white text-base pr-1">
+                Lineups
+              </span>
+              <input
+                type="checkbox"
+                className="checkbox checkbox-accent"
+                checked={isLineupShown}
+                onChange={handleLineupShown}
+              />
+            </label>
+          </div>
         </header>
         <p className="p-2">
           <GiSoccerField className="mx-auto text-mybig text-green-600" />{" "}

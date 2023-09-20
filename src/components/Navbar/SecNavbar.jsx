@@ -31,7 +31,7 @@ const SecNavbar = ({ isToggleChecked, handleToggleChange }) => {
               </span>
               <input
                 type="checkbox"
-                className="toggle"
+                className={`toggle ${isToggleChecked ? "bg-yellow-500" : ""}`}
                 checked={isToggleChecked}
                 onChange={handleToggleChange}
               />

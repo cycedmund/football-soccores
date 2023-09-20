@@ -3,7 +3,7 @@ import { TbHomeMove } from "react-icons/tb";
 
 const ErrorPage = () => {
   return (
-    <main className="w-full h-[94%] flex flex-col justify-center items-center bg-slate-900">
+    <main className="w-full h-[80%] flex flex-col justify-center items-center bg-slate-900">
       <h1 className="text-9xl font-bold text-white">404</h1>
       <div className="bg-red-500 px-2 text-2xl rounded text-black">
         Page Not Found
