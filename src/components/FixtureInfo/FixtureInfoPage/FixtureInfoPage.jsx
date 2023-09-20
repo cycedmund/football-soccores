@@ -114,7 +114,7 @@ const FixtureInfoPage = () => {
           </div>
         ) : (
           <div className="text-center text-red-600">
-            {fixture.fixture.status.elapsed}`
+            {/* {fixture.fixture.status.elapsed}` */}
             <MatchTimer date={fixture.fixture.date} />
           </div>
         )}

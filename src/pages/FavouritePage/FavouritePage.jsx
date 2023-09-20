@@ -15,7 +15,7 @@ const FavouritePage = ({ favTeam, handleDeleteFavTeam }) => {
             >
               <figure>
                 <Link to="/standings">
-                  <img src={team.logo} alt={team.name} />
+                  <img src={team.logo} alt={team.name} width={150} />
                 </Link>
               </figure>
               <div className="card-body">

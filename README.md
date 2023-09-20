@@ -1,10 +1,78 @@
-# React + Vite
+# Personal Portfolio - **Soccores App**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Soccores app is THE platform for accessing Premier League football updates such as live score updates, detailed standings, team profiles, and player information. Soccores aims to provide a seamless experience to keep users informed and engaged with the latest Premier League Scores.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. [Project Brief](#project-brief)
+   - [MVP - Minimum Viable Product](#mvp---minimum-viable-product)
+   - [Optional Goals](#optional-goals)
+1. [Screenshot(s)](#screenshots)
+1. [Technologies Used](#technologies-used)
+1. [Getting Started](#getting-started)
+   - [Soccores App](#soccores-app)
+   - [Trello Board (Project Planning)](#trello-board-project-planning)
+1. [Next Steps](#next-steps)
+1. [References](#references)
+   - [APIs](#apis)
+   - [Knowledge](#knowledge)
 
-API in FixtureInfoPage, TeamInfo, LivePage, App
+## Project Brief
+
+### MVP - Minimum Viable Product
+
+- Build a web application using create-react-app / vite or next.js.
+- Use 3rd party API and Airtable
+  - Calling an API and displaying the data for the user. You may use any API of your choosing.
+  - You must use Airtable to store data.
+- Use React framework to build your application with at least:
+  - 5 components
+  - 4 props
+  - 2 useStates
+  - 2 react router routes
+  - 1 lifting state, which isused to implement CRUD on the client side
+- Be styled such that the app looks and feels similar to apps we use on a daily basis - in other words, **it should have a consistent and polished user interface**.
+- Be deployed online (Vercel).
+- Have **full-CRUD single model operations** somewhere within the app's features. For example, you can have functionality that Creates & Updates & Delete by implementing the ability to CRUD favourites.
+
+### Optional Goals
+
+- Use more than 1 API
+- Use more than 1 model with Airtable
+- Have suitable validations and/or fetch loading states
+- Use a React component library like Ant Design or Material UI
+- Use a CSS Framework or a design system
+
+## Screenshot(s)
+
+## Technologies Used
+
+For this project, I used the following technologies:
+
+- React with Vite
+- Tailwind CSS
+- Daisy UI
+- Insomnia
+
+## Getting Started
+
+- [Soccores App](https://soccores.vercel.app/)
+- [Wireframe Draft (Project Planning)](https://miro.com/app/board/uXjVMm6lVFE=/?share_link_id=713021329491#tpicker-content)
+- [Trello Board (Project Planning)](https://trello.com/b/aijMVvGr/football-livescore)
+
+## Next Steps
+
+Planned future enhancements for the Soccores app include:
+
+- Actual real-time updates with backend
+- Detailed match and player statistics for both during and post games
+- Latest transfer news and pre-game news for each team
+
+## References
+
+### APIs
+
+- [API-Football](https://www.api-football.com/)
+- [Useless Facts API](https://uselessfacts.jsph.pl/)
+
+### Knowledge
