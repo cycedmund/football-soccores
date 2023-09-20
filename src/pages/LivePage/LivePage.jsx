@@ -6,18 +6,18 @@ import { data } from "../../data/live-fixtures/mock-live-data";
 import { GiSoccerKick } from "react-icons/gi";
 
 const LivePage = () => {
-  const [liveFixtures, setLiveFixtures] = useState(null);
-  // const [liveFixtures, setLiveFixtures] = useState(data);
+  // const [liveFixtures, setLiveFixtures] = useState(null);
+  const [liveFixtures, setLiveFixtures] = useState(data);
 
-  useEffect(() => {
-    const fetchLiveFixturesData = async () => {
-      const liveFixturesData = await doFetchLiveFixtures();
-      setLiveFixtures(liveFixturesData);
-      console.log(liveFixturesData);
-    };
+  // useEffect(() => {
+  //   const fetchLiveFixturesData = async () => {
+  //     const liveFixturesData = await doFetchLiveFixtures();
+  //     setLiveFixtures(liveFixturesData);
+  //     console.log(liveFixturesData);
+  //   };
 
-    fetchLiveFixturesData();
-  }, []);
+  //   fetchLiveFixturesData();
+  // }, []);
 
   //* ========= refresh data =========
   // const refreshData = async () => {

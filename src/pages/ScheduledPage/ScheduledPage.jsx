@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
 import SecNavbar from "../../components/Navbar/SecNavbar";
 import Datepicker from "react-tailwindcss-datepicker";
-import { useState } from "react";
+import { useDatePicker } from "../../hooks/useDatePicker";
 
-const ScheduledPage = ({ otherFixtures }) => {
-  const [value, setValue] = useState({
-    startDate: null,
-    endDate: null,
-  });
-
-  const handleValueChange = (newValue) => {
-    setValue(newValue);
-  };
+const ScheduledPage = ({
+  otherFixtures,
+  favTeam,
+  isToggleChecked,
+  handleToggleChange,
+}) => {
+  const { value, handleValueChange } = useDatePicker();
 
   const groupFixturesByDate = {};
 
@@ -46,9 +44,26 @@ const ScheduledPage = ({ otherFixtures }) => {
     }
   );
 
+  const favTeamFixtures = filteredFixtures
+    .map(([date, fixtures]) => {
+      const fixturesOfFavTeam = fixtures.filter((fixture) => {
+        return favTeam.some(
+          (team) =>
+            team.name === fixture.teams.home.name ||
+            team.name === fixture.teams.away.name
+        );
+      });
+      return [date, fixturesOfFavTeam];
+    })
+    .filter(([, fixtures]) => fixtures.length > 0);
+
   return (
     <>
-      <SecNavbar className="relative" />
+      <SecNavbar
+        className="relative"
+        isToggleChecked={isToggleChecked}
+        handleToggleChange={handleToggleChange}
+      />
       <div className="absolute top-[134px] right-[290px] w-[22%]">
         <Datepicker
           i18n={"en-sg"}
@@ -63,97 +78,95 @@ const ScheduledPage = ({ otherFixtures }) => {
         </div>
       ) : (
         <div className="grid grid-cols-1 text-white font-ox">
-          {filteredFixtures.map(([date, fixtures]) => (
-            <main key={date}>
-              <h2
-                className="bg-slate-700 py-2 pl-2 
+          {(isToggleChecked ? favTeamFixtures : filteredFixtures).map(
+            ([date, fixtures]) => (
+              <main key={date}>
+                <h2
+                  className="bg-slate-700 py-2 pl-2 
               text-white 
               text-left
               text-lg 
               w-full"
-              >
-                {date}
-              </h2>
-              {fixtures.map((fixture) => {
-                const date = new Date(fixture.fixture.date);
-                const time = date.toLocaleTimeString("en-SG", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                });
-                return (
-                  <Link
-                    to={`/scheduled/${fixture.fixture.id}`}
-                    key={fixture.fixture.id}
-                  >
-                    <div className="bg-slate-900">
-                      <header
-                        className="bg-slate-800 p-1 
+                >
+                  {date}
+                </h2>
+                {fixtures.map((fixture) => {
+                  const date = new Date(fixture.fixture.date);
+                  const time = date.toLocaleTimeString("en-SG", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  });
+                  return (
+                    <Link
+                      to={`/scheduled/${fixture.fixture.id}`}
+                      key={fixture.fixture.id}
+                    >
+                      <div className="bg-slate-900">
+                        <header
+                          className="bg-slate-800 p-1 
               text-white 
               text-center 
               w-full flex"
-                      >
-                        <img
-                          className="mx-auto w-[5%]"
-                          src={fixture.league.flag}
-                          alt={fixture.league.country}
-                        />
-                        <p className="w-[95%] pl-3 flex items-center text-yellow-600">
-                          {fixture.league.country.toUpperCase()}:{" "}
-                          {fixture.league.name}
-                        </p>
-                      </header>
+                        >
+                          <img
+                            className="mx-auto w-[5%]"
+                            src={fixture.league.flag}
+                            alt={fixture.league.country}
+                          />
+                          <p className="w-[95%] pl-3 flex items-center text-yellow-600">
+                            {fixture.league.country.toUpperCase()}:{" "}
+                            {fixture.league.name}
+                          </p>
+                        </header>
 
-                      <div className="w-full flex p-1">
-                        <div className="w-[10%] flex flex-col justify-center items-center text-center">
-                          {time}
+                        <div className="w-full flex p-1">
+                          <div className="w-[10%] flex flex-col justify-center items-center text-center">
+                            {time}
+                          </div>
+
+                          <article className="w-[90%]">
+                            <section className="flex p-1 items-center">
+                              <figure className="w-[10%]">
+                                <img
+                                  className="mx-auto"
+                                  src={fixture.teams.home.logo}
+                                  width={30}
+                                  alt={fixture.teams.home.name}
+                                />
+                              </figure>
+
+                              <p className="w-[70%] text-left">
+                                {fixture.teams.home.name}
+                              </p>
+
+                              <p className="w-[20%] text-center">-</p>
+                            </section>
+
+                            <section className="flex p-1 items-center">
+                              <figure className="w-[10%]">
+                                <img
+                                  className="mx-auto"
+                                  src={fixture.teams.away.logo}
+                                  width={30}
+                                  alt={fixture.teams.away.name}
+                                />
+                              </figure>
+
+                              <p className="w-[70%] text-left">
+                                {fixture.teams.away.name}
+                              </p>
+
+                              <p className="w-[20%] text-center">-</p>
+                            </section>
+                          </article>
                         </div>
-
-                        <article className="w-[90%]">
-                          <section className="flex p-1 items-center">
-                            <figure className="w-[10%]">
-                              <img
-                                className="mx-auto"
-                                src={fixture.teams.home.logo}
-                                width={30}
-                                alt={fixture.teams.home.name}
-                              />
-                            </figure>
-
-                            <p className="w-[70%] text-left">
-                              {fixture.teams.home.name}
-                            </p>
-
-                            <p className="w-[20%] text-center">
-                              {fixture.goals.home}
-                            </p>
-                          </section>
-
-                          <section className="flex p-1 items-center">
-                            <figure className="w-[10%]">
-                              <img
-                                className="mx-auto"
-                                src={fixture.teams.away.logo}
-                                width={30}
-                                alt={fixture.teams.away.name}
-                              />
-                            </figure>
-
-                            <p className="w-[70%] text-left">
-                              {fixture.teams.away.name}
-                            </p>
-
-                            <p className="w-[20%] text-center">
-                              {fixture.goals.away}
-                            </p>
-                          </section>
-                        </article>
                       </div>
-                    </div>
-                  </Link>
-                );
-              })}
-            </main>
-          ))}
+                    </Link>
+                  );
+                })}
+              </main>
+            )
+          )}
         </div>
       )}
     </>

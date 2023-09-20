@@ -12,9 +12,11 @@ const FavouritePage = ({ favTeam, handleDeleteFavTeam }) => {
       </main>
     );
   }
+
   const sortedFavTeam = [...favTeam].sort((a, b) =>
     a.name.localeCompare(b.name)
   );
+
   return (
     <div className="flex justify-center items-center bg-slate-900">
       <main className="grid grid-cols-2 gap-4 py-10 ">
@@ -25,7 +27,7 @@ const FavouritePage = ({ favTeam, handleDeleteFavTeam }) => {
               key={team.teamid}
             >
               <figure>
-                <Link to="/standings">
+                <Link to="/finished">
                   <img src={team.logo} alt={team.name} width={150} />
                 </Link>
               </figure>

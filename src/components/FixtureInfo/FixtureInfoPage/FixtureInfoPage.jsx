@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
 import { GiSoccerField } from "react-icons/gi";
 import MainInfo from "../FixtureInfoComponents/MainInfo";
-import MatchTimer from "../../MatchTimer/MatchTimer";
+// import MatchTimer from "../../MatchTimer/MatchTimer";
 import ErrorPage from "../../../pages/ErrorPage/ErrorPage";
 import { isValidFixtureID } from "../../../utils/IDcheck/isValidFixtureID";
 import { doFetchEachFixture } from "../../../utils/footballapi/eachFixtureAPI/fetchEachFixture";
@@ -12,13 +12,13 @@ const FixtureInfoPage = () => {
   const { matchID, matchStatus } = useParams();
   const numMatchId = parseInt(matchID);
 
-  useEffect(() => {
-    const fetchEachFixtureData = async (numMatchId) => {
-      const eachFixtureData = await doFetchEachFixture(numMatchId);
-      setMatchEvents(eachFixtureData);
-    };
-    fetchEachFixtureData(numMatchId);
-  }, [numMatchId]);
+  // useEffect(() => {
+  //   const fetchEachFixtureData = async (numMatchId) => {
+  //     const eachFixtureData = await doFetchEachFixture(numMatchId);
+  //     setMatchEvents(eachFixtureData);
+  //   };
+  //   fetchEachFixtureData(numMatchId);
+  // }, [numMatchId]);
 
   if (
     matchStatus !== "live" &&
@@ -114,8 +114,8 @@ const FixtureInfoPage = () => {
           </div>
         ) : (
           <div className="text-center text-red-600">
-            {/* {fixture.fixture.status.elapsed}` */}
-            <MatchTimer date={fixture.fixture.date} />
+            {fixture.fixture.status.elapsed}`
+            {/* <MatchTimer date={fixture.fixture.date} /> */}
           </div>
         )}
       </article>
