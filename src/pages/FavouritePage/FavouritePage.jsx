@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
+import { FiStar } from "react-icons/fi";
 
 const FavouritePage = ({ favTeam, handleDeleteFavTeam }) => {
+  if (favTeam.length === 0) {
+    return (
+      <main className="flex h-[73%] items-center justify-center text-center">
+        <section className="flex flex-col items-center">
+          <FiStar className="text-6xl mx-auto" />
+          <div className="mt-4">NO FAVOURITE TEAM FOUND</div>
+        </section>
+      </main>
+    );
+  }
   const sortedFavTeam = [...favTeam].sort((a, b) =>
     a.name.localeCompare(b.name)
   );

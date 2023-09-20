@@ -45,27 +45,18 @@ const ScheduledPage = ({ otherFixtures }) => {
       );
     }
   );
-  console.log("1", filteredFixtures);
-  console.log("2", groupFixturesByDate);
 
   return (
     <>
-      {/* <SecNavbar className="relative" />
-      <div className="absolute top-[85px] right-52 w-[19%]">
+      <SecNavbar className="relative" />
+      <div className="absolute top-[134px] right-[290px] w-[22%]">
         <Datepicker
           i18n={"en-sg"}
           primaryColor={"blue"}
           value={value}
           onChange={handleValueChange}
         />
-      </div> */}
-      <SecNavbar />
-      <Datepicker
-        i18n={"en-sg"}
-        primaryColor={"blue"}
-        value={value}
-        onChange={handleValueChange}
-      />
+      </div>
       {otherFixtures === null ? (
         <div className="flex h-[80%] items-center justify-center">
           <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
@@ -75,7 +66,7 @@ const ScheduledPage = ({ otherFixtures }) => {
           {filteredFixtures.map(([date, fixtures]) => (
             <main key={date}>
               <h2
-                className="bg-slate-700 p-1 pl-2 
+                className="bg-slate-700 py-2 pl-2 
               text-white 
               text-left
               text-lg 
@@ -118,7 +109,7 @@ const ScheduledPage = ({ otherFixtures }) => {
                         </div>
 
                         <article className="w-[90%]">
-                          <section className="flex p-1">
+                          <section className="flex p-1 items-center">
                             <figure className="w-[10%]">
                               <img
                                 className="mx-auto"
@@ -137,7 +128,7 @@ const ScheduledPage = ({ otherFixtures }) => {
                             </p>
                           </section>
 
-                          <section className="flex p-1">
+                          <section className="flex p-1 items-center">
                             <figure className="w-[10%]">
                               <img
                                 className="mx-auto"

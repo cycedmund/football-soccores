@@ -21,10 +21,10 @@ import { doFetchNonLiveFixtures } from "./utils/footballapi/otherFixturesAPI/fet
 import { mockOtherFixtures } from "./data/nonlivefixtures/nonlivefixtures-mock";
 
 function App() {
-  // const [otherFixtures, setOtherFixtures] = useState(null);
-  const [otherFixtures, setOtherFixtures] = useState(mockOtherFixtures);
-  // const [standings, setStandings] = useState([]);
-  const [standings, setStandings] = useState(dataStandings);
+  const [otherFixtures, setOtherFixtures] = useState(null);
+  // const [otherFixtures, setOtherFixtures] = useState(mockOtherFixtures);
+  const [standings, setStandings] = useState([]);
+  // const [standings, setStandings] = useState(dataStandings);
   const [status, setStatus] = useState("idle");
   const [searchResults, setSearchResults] = useState([]);
   const [favTeam, setFavTeam] = useState([]);
@@ -32,28 +32,28 @@ function App() {
 
   //? ========= fetch live data =========
 
-  useEffect(() => {
-    setStatus("success");
-  }, []);
-
   // useEffect(() => {
-  //   const fetchBothData = async () => {
-  //     try {
-  //       setStatus("loading");
-  //       const [nonLiveFixturesData, standingsData] = await Promise.all([
-  //         doFetchNonLiveFixtures(),
-  //         doFetchStandings(),
-  //       ]);
-  //       setOtherFixtures(nonLiveFixturesData);
-  //       setStandings(standingsData);
-  //       setStatus("success");
-  //     } catch (error) {
-  //       console.error(error);
-  //       setStatus("error");
-  //     }
-  //   };
-  //   fetchBothData();
+  //   setStatus("success");
   // }, []);
+
+  useEffect(() => {
+    const fetchBothData = async () => {
+      try {
+        setStatus("loading");
+        const [nonLiveFixturesData, standingsData] = await Promise.all([
+          doFetchNonLiveFixtures(),
+          doFetchStandings(),
+        ]);
+        setOtherFixtures(nonLiveFixturesData);
+        setStandings(standingsData);
+        setStatus("success");
+      } catch (error) {
+        console.error(error);
+        setStatus("error");
+      }
+    };
+    fetchBothData();
+  }, []);
 
   // useEffect(() => {
   //   const fetchNonLiveFixtures = async () => {

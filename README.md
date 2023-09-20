@@ -47,8 +47,6 @@ The Soccores app is THE platform for accessing Premier League football updates s
 
 ## Technologies Used
 
-For this project, I used the following technologies:
-
 - React with Vite
 - Tailwind CSS
 - Daisy UI
@@ -57,13 +55,14 @@ For this project, I used the following technologies:
 ## Getting Started
 
 - [Soccores App](https://soccores.vercel.app/)
-- [Wireframe Draft (Project Planning)](https://miro.com/app/board/uXjVMm6lVFE=/?share_link_id=713021329491#tpicker-content)
-- [Trello Board (Project Planning)](https://trello.com/b/aijMVvGr/football-livescore)
+- [Wireframe Draft (Project Planning)](https://miro.com/app/board/uXjVMm6lVFE=/?share_link_id=778211192354)
+- [Trello Board (Project Planning)](https://trello.com/invite/b/aijMVvGr/ATTI936ee6404ee21b6a0b914c63f754835e30A42DA9/football-livescore)
 
 ## Next Steps
 
 Planned future enhancements for the Soccores app include:
 
+- Clean up codes
 - Actual real-time updates with backend
 - Detailed match and player statistics for both during and post games
 - Latest transfer news and pre-game news for each team

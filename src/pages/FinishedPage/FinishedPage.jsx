@@ -44,7 +44,7 @@ const FinishedPage = ({ otherFixtures }) => {
                       </div>
 
                       <article className="w-[90%]">
-                        <section className="flex p-1">
+                        <section className="flex p-1 items-center">
                           <figure className="w-[10%]">
                             <img
                               className="mx-auto"
@@ -70,7 +70,7 @@ const FinishedPage = ({ otherFixtures }) => {
                           </p>
                         </section>
 
-                        <section className="flex p-1">
+                        <section className="flex p-1 items-center">
                           <figure className="w-[10%]">
                             <img
                               className="mx-auto"
