@@ -6,6 +6,7 @@ import Loading from "../../components/Loading/Loading";
 import SecNavbar from "../../components/Navbar/SecNavbar";
 import { doFetchLiveFixtures } from "../../utils/footballapi/liveFixturesAPI/fetchLiveFixtures";
 import { GiSoccerKick } from "react-icons/gi";
+import { toast } from "react-hot-toast";
 
 const LivePage = () => {
   const [liveFixtures, setLiveFixtures] = useState(null);
@@ -29,6 +30,7 @@ const LivePage = () => {
   //   try {
   //     const result = await doFetchLiveFixtures();
   //     setLiveFixtures(result);
+  //     toast.loading("Bringing you the latest update now..");
   //   } catch (error) {
   //     console.error("Error fetching data", error);
   //   }

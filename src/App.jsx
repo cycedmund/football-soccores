@@ -28,24 +28,24 @@ function App() {
   const [isToggleChecked, setIsToggleChecked] = useState(true);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchBothData = async () => {
-  //     try {
-  //       setStatus("loading");
-  //       const [nonLiveFixturesData, standingsData] = await Promise.all([
-  //         doFetchNonLiveFixtures(),
-  //         doFetchStandings(),
-  //       ]);
-  //       setOtherFixtures(nonLiveFixturesData);
-  //       setStandings(standingsData);
-  //       setStatus("success");
-  //     } catch (error) {
-  //       console.error(error);
-  //       setStatus("error");
-  //     }
-  //   };
-  //   fetchBothData();
-  // }, []);
+  useEffect(() => {
+    const fetchBothData = async () => {
+      try {
+        setStatus("loading");
+        const [nonLiveFixturesData, standingsData] = await Promise.all([
+          doFetchNonLiveFixtures(),
+          doFetchStandings(),
+        ]);
+        setOtherFixtures(nonLiveFixturesData);
+        setStandings(standingsData);
+        setStatus("success");
+      } catch (error) {
+        console.error(error);
+        setStatus("error");
+      }
+    };
+    fetchBothData();
+  }, []);
 
   useEffect(() => {
     const fetchFavTeamData = async () => {
