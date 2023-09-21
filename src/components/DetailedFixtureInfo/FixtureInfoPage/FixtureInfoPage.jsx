@@ -51,13 +51,13 @@ const FixtureInfoPage = () => {
     matchID
   );
 
-  useEffect(() => {
-    const fetchEachFixtureData = async (numMatchId) => {
-      const eachFixtureData = await doFetchEachFixture(numMatchId);
-      setMatchEvents(eachFixtureData);
-    };
-    fetchEachFixtureData(numMatchId);
-  }, [numMatchId]);
+  // useEffect(() => {
+  //   const fetchEachFixtureData = async (numMatchId) => {
+  //     const eachFixtureData = await doFetchEachFixture(numMatchId);
+  //     setMatchEvents(eachFixtureData);
+  //   };
+  //   fetchEachFixtureData(numMatchId);
+  // }, [numMatchId]);
 
   if (!matchEvents) {
     return <Loading />;

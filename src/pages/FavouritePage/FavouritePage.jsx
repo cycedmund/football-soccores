@@ -7,7 +7,7 @@ const FavouritePage = ({ favTeam, handleDeleteFavTeam }) => {
     return <Loading />;
   } else if (favTeam.length === 0) {
     return (
-      <main className="flex h-[73%] items-center justify-center text-center">
+      <main className="flex h-[80%] items-center justify-center text-center bg-slate-900">
         <section className="flex flex-col items-center">
           <FiStar className="text-6xl mx-auto" />
           <div className="mt-4">NO FAVOURITE TEAM FOUND</div>

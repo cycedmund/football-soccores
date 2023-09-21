@@ -10,29 +10,29 @@ import { GiSoccerKick } from "react-icons/gi";
 const LivePage = () => {
   const [liveFixtures, setLiveFixtures] = useState(null);
 
-  useEffect(() => {
-    const fetchLiveFixturesData = async () => {
-      const liveFixturesData = await doFetchLiveFixtures();
-      setLiveFixtures(liveFixturesData);
-    };
+  // useEffect(() => {
+  //   const fetchLiveFixturesData = async () => {
+  //     const liveFixturesData = await doFetchLiveFixtures();
+  //     setLiveFixtures(liveFixturesData);
+  //   };
 
-    fetchLiveFixturesData();
-  }, []);
+  //   fetchLiveFixturesData();
+  // }, []);
 
   //* ========= refresh data =========
-  useEffect(() => {
-    const refresh = setInterval(refreshLivePage, 300000);
-    return () => clearInterval(refresh);
-  }, []);
+  // useEffect(() => {
+  //   const refresh = setInterval(refreshLivePage, 300000);
+  //   return () => clearInterval(refresh);
+  // }, []);
 
-  const refreshLivePage = async () => {
-    try {
-      const result = await doFetchLiveFixtures();
-      setLiveFixtures(result);
-    } catch (error) {
-      console.error("Error fetching data", error);
-    }
-  };
+  // const refreshLivePage = async () => {
+  //   try {
+  //     const result = await doFetchLiveFixtures();
+  //     setLiveFixtures(result);
+  //   } catch (error) {
+  //     console.error("Error fetching data", error);
+  //   }
+  // };
   //* ========= refresh data =========
 
   return (
@@ -41,7 +41,7 @@ const LivePage = () => {
       {liveFixtures === null ? (
         <Loading />
       ) : liveFixtures.response.length === 0 ? (
-        <main className="flex h-[73%] items-center justify-center text-center">
+        <main className="flex h-[74%] items-center justify-center text-center bg-slate-900 border-t-2 border-gray-800">
           <section className="flex flex-col items-center">
             <GiSoccerKick className="text-6xl mx-auto" />
             <div className="mt-4">NO LIVE MATCHES AT THE MOMENT</div>

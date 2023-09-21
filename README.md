@@ -21,7 +21,22 @@ The Soccores app is THE platform for accessing Premier League football updates s
 
 ## Features
 
--
+- Real-time scores from live Premier League matches.
+
+- Access the most recent Premier League standings.
+
+- Explore all the teams in the league, along with detailed player information.
+
+- Add favorite teams to your list for quick access.
+
+  - View past results and upcoming match schedules for your favorite team.
+
+- Access individual match lineups and overall match statistics.
+
+  - Dive deep into the details of each match, from match summary to player lineups.
+
+- Filter and view results by specific dates.
+  - Easily access and analyze both upcoming and past match results based on selected dates.
 
 ## Project Brief
 
@@ -68,10 +83,23 @@ The Soccores app is THE platform for accessing Premier League football updates s
 
 Planned future enhancements for the Soccores app include:
 
-- Clean up codes
-- Actual real-time updates with backend
-- Detailed match and player statistics for both during and post games
-- Latest transfer news and pre-game news for each team
+- Actual real-time updates with backend.
+
+  - Implement a backend solution for real-time updates instead of request updates through "refresh".
+
+- Offer detailed statistics for individual matches and players, both during and after games.
+
+- Access latest transfer news and pre-game updates for every team.
+
+- Access standings and team information from multiple leagues.
+
+## Challenges Faced
+
+- Initially struggled with balancing feature implementation with focusing on the MVP.
+
+  - Learn to avoid feature creep
+
+- Faced challenges
 
 ## References
 
@@ -89,3 +117,4 @@ Planned future enhancements for the Soccores app include:
 ### Miscellaneous
 
 -[Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString)
+-[]

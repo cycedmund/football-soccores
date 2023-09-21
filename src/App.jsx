@@ -28,24 +28,24 @@ function App() {
   const [isToggleChecked, setIsToggleChecked] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchBothData = async () => {
-      try {
-        setStatus("loading");
-        const [nonLiveFixturesData, standingsData] = await Promise.all([
-          doFetchNonLiveFixtures(),
-          doFetchStandings(),
-        ]);
-        setOtherFixtures(nonLiveFixturesData);
-        setStandings(standingsData);
-        setStatus("success");
-      } catch (error) {
-        console.error(error);
-        setStatus("error");
-      }
-    };
-    fetchBothData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchBothData = async () => {
+  //     try {
+  //       setStatus("loading");
+  //       const [nonLiveFixturesData, standingsData] = await Promise.all([
+  //         doFetchNonLiveFixtures(),
+  //         doFetchStandings(),
+  //       ]);
+  //       setOtherFixtures(nonLiveFixturesData);
+  //       setStandings(standingsData);
+  //       setStatus("success");
+  //     } catch (error) {
+  //       console.error(error);
+  //       setStatus("error");
+  //     }
+  //   };
+  //   fetchBothData();
+  // }, []);
 
   useEffect(() => {
     const fetchFavTeamData = async () => {
@@ -59,7 +59,7 @@ function App() {
     setIsToggleChecked(!isToggleChecked);
   };
 
-  //? === Searchbox ===
+  //? ========== Searchbox ==========
 
   const handleSearch = (searchInput) => {
     const results = standings.response[0].league.standings[0].filter((team) =>
@@ -75,9 +75,9 @@ function App() {
     }
   };
 
-  //? === Searchbox ===
+  //? ========== Searchbox ==========
 
-  //* === CRUD ===
+  //* ========== CRUD ==========
   const addFavInProgress = useRef(false);
 
   const handleAddFavTeam = async (name, teamid, logo) => {
@@ -109,7 +109,7 @@ function App() {
     );
   };
 
-  //* === CRUD ===
+  //* ========== CRUD =========
 
   return (
     <div className="w-full-md:w-[700px] lg:w-[880px] h-screen m-auto">

@@ -13,13 +13,13 @@ const TeamInfo = () => {
   const { teamID } = useParams();
   const idToNum = parseInt(teamID);
 
-  useEffect(() => {
-    const fetchTeamData = async (idToNum) => {
-      const teamData = await doFetchTeam(idToNum);
-      setPlayersInfo(teamData);
-    };
-    fetchTeamData(idToNum);
-  }, [idToNum]);
+  // useEffect(() => {
+  //   const fetchTeamData = async (idToNum) => {
+  //     const teamData = await doFetchTeam(idToNum);
+  //     setPlayersInfo(teamData);
+  //   };
+  //   fetchTeamData(idToNum);
+  // }, [idToNum]);
 
   if (!playersInfo) {
     return <Loading />;
