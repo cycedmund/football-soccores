@@ -23,19 +23,12 @@ The Soccores app is a platform for accessing Premier League football updates suc
 ## Features
 
 - Real-time scores from live Premier League matches.
-
 - Access the most recent Premier League standings.
-
 - Explore all the teams in the league, along with detailed player information.
-
 - Add favorite teams to your list for quick access.
-
   - View past results and upcoming match schedules for your favorite team.
-
 - Access individual match lineups and overall match statistics.
-
   - Dive deep into the details of each match, from match summary to player lineups.
-
 - Filter and view results by specific dates.
   - Easily access and analyze both upcoming and past match results based on selected dates.
 
@@ -87,13 +80,9 @@ The Soccores app is a platform for accessing Premier League football updates suc
 Planned future enhancements for the Soccores app include:
 
 - Actual real-time updates with backend.
-
   - Implement a backend solution for real-time updates instead of request updates through "refresh".
-
 - Offer detailed statistics for individual matches and players, both during and after games.
-
 - Access latest transfer news and pre-game updates for every team.
-
 - Access standings and team information from multiple leagues.
 
 ## Challenges Faced and Key Learnings
@@ -103,7 +92,6 @@ Planned future enhancements for the Soccores app include:
   - **Key Learnings**: Learnt the importance of prioritising core functionalities first before developing the UI layouts.
 
 - **Styling with Tailwind CSS**: While using Tailwind CSS can be an effective way to style components, I find that the HTML codes appear cluttered due to the extensive use of classnames. I find it challenging to read and navigate through the codes.
-
   - **Key Learnings**: Learnt about the limitations of Tailwind CSS.
 
 ## References
@@ -116,21 +104,14 @@ Planned future enhancements for the Soccores app include:
 ### Mini Libraries
 
 - [React Icons](https://react-icons.github.io/react-icons/)
-
 - [React Tailwindcss Datepicker](https://react-tailwindcss-datepicker.vercel.app/)
-
 - [React Hot Toast](https://react-hot-toast.com/)
 
 ### Miscellaneous
 
 - [Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString) -[Sorting](https://usefulangle.com/post/227/javascript-sort-array-of-objects)
-
 - [Error Page](https://www.makeuseof.com/react-router-404-page-create/)
-
 - [Managing Arrays](https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/)
-
 - [Create Objects from Key-Value pairs](https://www.tutorialspoint.com/javascript-how-to-create-an-object-from-key-value-pairs)
-
 - [Group Items by Date](https://stackoverflow.com/questions/46802448/how-do-i-group-items-in-an-array-by-date)
-
 - [Tailwind with Icons](https://dev.to/shubhamtiwari909/beautiful-buttons-with-tailwindcss-and-react-icons-3ego)
