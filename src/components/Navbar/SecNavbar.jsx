@@ -25,7 +25,7 @@ const SecNavbar = ({
       </ul>
       {(location.pathname === "/finished" ||
         location.pathname === "/scheduled") && (
-        <div className="flex w-[45%] justify-end">
+        <div className="flex w-[45%] justify-end items-center">
           <Datepicker
             i18n={"en-sg"}
             primaryColor={"blue"}
@@ -35,11 +35,16 @@ const SecNavbar = ({
           <div className="form-control pl-5">
             <label className="label cursor-pointer">
               <span className="label-text pr-2">
-                <FiStar
-                  className={`text-2xl ${
-                    isToggleChecked ? "fill-yellow-500 text-yellow-500" : ""
-                  }`}
-                />
+                <span
+                  className="flex items-center tooltip tooltip-bottom tooltip-info cursor-default"
+                  data-tip="Fav Team(s) Matches"
+                >
+                  <FiStar
+                    className={`text-2xl ${
+                      isToggleChecked ? "fill-yellow-500 text-yellow-500" : ""
+                    }`}
+                  />
+                </span>
               </span>
               <input
                 type="checkbox"

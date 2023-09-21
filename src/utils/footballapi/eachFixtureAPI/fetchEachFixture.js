@@ -1,6 +1,6 @@
 export const doFetchEachFixture = async (id) => {
-  // const urlFixture = `https://api-football-v1.p.rapidapi.com/v3/fixtures?id=${id}&league=39`;
-  const urlFixture = `https://api-football-v1.p.rapidapi.com/v3/fixtures?id=${id}`;
+  const urlFixture = `https://api-football-v1.p.rapidapi.com/v3/fixtures?id=${id}&league=39`;
+  // const urlFixture = `https://api-football-v1.p.rapidapi.com/v3/fixtures?id=${id}`;
   const options = {
     method: "GET",
     headers: {
