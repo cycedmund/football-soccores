@@ -123,7 +123,7 @@ Planned future enhancements for the Soccores app include:
 
 ### Miscellaneous
 
--[Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString) -[Sorting](https://usefulangle.com/post/227/javascript-sort-array-of-objects)
+- [Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString) -[Sorting](https://usefulangle.com/post/227/javascript-sort-array-of-objects)
 
 - [Error Page](https://www.makeuseof.com/react-router-404-page-create/)
 
