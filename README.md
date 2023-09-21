@@ -1,6 +1,6 @@
 # Soccores
 
-The Soccores app is THE platform for accessing Premier League football updates such as live score updates, detailed standings, team profiles, and player information. Soccores aims to provide a seamless experience to keep users informed and engaged with the latest Premier League Scores.
+The Soccores app is a platform for accessing Premier League football updates such as live score updates, detailed standings, team profiles, and player information. Soccores aims to provide a seamless experience to keep users informed and engaged with the latest Premier League Scores.
 
 ## Table of Contents
 
@@ -14,6 +14,7 @@ The Soccores app is THE platform for accessing Premier League football updates s
    - [Soccores App](#soccores-app)
    - [Trello Board (Project Planning)](#trello-board-project-planning)
 1. [Next Steps](#next-steps)
+1. [Challenges Faced and Key Learnings](#challenges-faced-and-key-learnings)
 1. [References](#references)
    - [APIs](#apis)
    - [Mini Libraries](#mini-libraries)
@@ -66,6 +67,8 @@ The Soccores app is THE platform for accessing Premier League football updates s
 
 ## Screenshot(s)
 
+![Screenshot of Soccores App](/screenshots/ScheduledPage.png)
+
 ## Technologies Used
 
 - React with Vite
@@ -93,13 +96,15 @@ Planned future enhancements for the Soccores app include:
 
 - Access standings and team information from multiple leagues.
 
-## Challenges Faced
+## Challenges Faced and Key Learnings
 
-- Initially struggled with balancing feature implementation with focusing on the MVP.
+- **Balancing Features and MVP**: Initially, I faced the challenge of dedicating too much time to perfecting UI layouts and item placement.
 
-  - Learn to avoid feature creep
+  - **Key Learnings**: Learnt the importance of prioritising core functionalities first before developing the UI layouts.
 
-- Faced challenges
+- **Styling with Tailwind CSS**: While using Tailwind CSS can be an effective way to style components, I find that the HTML codes appear cluttered due to the extensive use of classnames. I find it challenging to read and navigate through the codes.
+
+  - **Key Learnings**: Learnt about the limitations of Tailwind CSS.
 
 ## References
 
@@ -111,10 +116,21 @@ Planned future enhancements for the Soccores app include:
 ### Mini Libraries
 
 - [React Icons](https://react-icons.github.io/react-icons/)
+
 - [React Tailwindcss Datepicker](https://react-tailwindcss-datepicker.vercel.app/)
+
 - [React Hot Toast](https://react-hot-toast.com/)
 
 ### Miscellaneous
 
--[Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString)
--[]
+-[Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString) -[Sorting](https://usefulangle.com/post/227/javascript-sort-array-of-objects)
+
+- [Error Page](https://www.makeuseof.com/react-router-404-page-create/)
+
+- [Managing Arrays](https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/)
+
+- [Create Objects from Key-Value pairs](https://www.tutorialspoint.com/javascript-how-to-create-an-object-from-key-value-pairs)
+
+- [Group Items by Date](https://stackoverflow.com/questions/46802448/how-do-i-group-items-in-an-array-by-date)
+
+- [Tailwind with Icons](https://dev.to/shubhamtiwari909/beautiful-buttons-with-tailwindcss-and-react-icons-3ego)
