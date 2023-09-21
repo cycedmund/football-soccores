@@ -1,6 +1,6 @@
 import { VscJersey } from "react-icons/vsc";
 
-const HomeRow = ({ name, pos, num, team, img }) => {
+const LineupRow = ({ name, pos, num, team, img }) => {
   return (
     <tr>
       <td className="relative">
@@ -27,4 +27,4 @@ const HomeRow = ({ name, pos, num, team, img }) => {
   );
 };
 
-export default HomeRow;
+export default LineupRow;

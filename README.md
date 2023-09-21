@@ -1,9 +1,10 @@
-# Personal Portfolio - **Soccores App**
+# Soccores
 
 The Soccores app is THE platform for accessing Premier League football updates such as live score updates, detailed standings, team profiles, and player information. Soccores aims to provide a seamless experience to keep users informed and engaged with the latest Premier League Scores.
 
 ## Table of Contents
 
+1. [Features](#features)
 1. [Project Brief](#project-brief)
    - [MVP - Minimum Viable Product](#mvp---minimum-viable-product)
    - [Optional Goals](#optional-goals)
@@ -15,7 +16,12 @@ The Soccores app is THE platform for accessing Premier League football updates s
 1. [Next Steps](#next-steps)
 1. [References](#references)
    - [APIs](#apis)
+   - [Mini Libraries](#mini-libraries)
    - [Knowledge](#knowledge)
+
+## Features
+
+-
 
 ## Project Brief
 
@@ -74,4 +80,12 @@ Planned future enhancements for the Soccores app include:
 - [API-Football](https://www.api-football.com/)
 - [Useless Facts API](https://uselessfacts.jsph.pl/)
 
-### Knowledge
+### Mini Libraries
+
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [React Tailwindcss Datepicker](https://react-tailwindcss-datepicker.vercel.app/)
+- [React Hot Toast](https://react-hot-toast.com/)
+
+### Miscellaneous
+
+-[Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString)

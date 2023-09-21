@@ -1,18 +1,17 @@
 import TeamCard from "./TeamCard";
+import Loading from "../../components/Loading/Loading";
 
 const TeamsPage = ({ standings, handleAddFavTeam, favTeam }) => {
-  const sortedStandings = [...standings.response[0].league.standings[0]];
-  sortedStandings.sort((a, b) => a.team.name.localeCompare(b.team.name));
+  const sortedTeams = [...standings.response[0].league.standings[0]];
+  sortedTeams.sort((a, b) => a.team.name.localeCompare(b.team.name));
 
   return (
     <>
-      {sortedStandings.length === 0 ? (
-        <div className="flex h-[80%] items-center justify-center">
-          <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
-        </div>
+      {sortedTeams.length === 0 ? (
+        <Loading />
       ) : (
         <div className="grid grid-cols-3 gap-10 py-10 bg-slate-900">
-          {sortedStandings.map((club) => {
+          {sortedTeams.map((club) => {
             const isFavourited = favTeam.some(
               (team) => team.teamid === club.team.id
             );

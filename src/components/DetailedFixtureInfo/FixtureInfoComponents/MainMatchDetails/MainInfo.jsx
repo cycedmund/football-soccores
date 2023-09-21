@@ -12,7 +12,9 @@ const MainInfo = ({ fixture }) => {
   return (
     <div className="grid grid-cols-1 text-center text-white">
       {fixture.fixture.status.short === "NS" ? (
-        <header className="bg-slate-800 text-center">No Details</header>
+        <header className="bg-slate-800 text-center">
+          <h2>No Details</h2>
+        </header>
       ) : (
         <header className="bg-slate-800 text-center">
           <h2>
@@ -26,7 +28,7 @@ const MainInfo = ({ fixture }) => {
         </header>
       )}
 
-      {fixture.events.length === 0 ? (
+      {firstHalfEvents.length === 0 ? (
         <span className="m-5"> - </span>
       ) : (
         <FirstHalfInfo
@@ -40,30 +42,23 @@ const MainInfo = ({ fixture }) => {
         <header className="bg-slate-800 text-center my-0.5">
           <h2>
             Second Half{" "}
-            {fixture.score.fulltime.home !== null ? (
-              <span>
-                [{fixture.score.fulltime.home - fixture.score.halftime.home} -
-                {fixture.score.fulltime.away - fixture.score.halftime.away}]
-              </span>
-            ) : (
-              <span>
-                [{fixture.goals.home - fixture.score.halftime.home} -{" "}
-                {fixture.goals.away - fixture.score.halftime.away}]
-              </span>
-            )}
+            <span>
+              [{fixture.goals.home - fixture.score.halftime.home} -
+              {fixture.goals.away - fixture.score.halftime.away}]
+            </span>
           </h2>
         </header>
       )}
 
       {(fixture.fixture.status.long === "Second Half" ||
         fixture.fixture.status.short === "FT") &&
-        (secondHalfEvents.length > 0 ? (
+        (secondHalfEvents.length === 0 ? (
+          <span className="m-5"> - </span>
+        ) : (
           <SecondHalfInfo
             secondHalfEvents={secondHalfEvents}
             teams={fixture.teams}
           />
-        ) : (
-          <span className="m-5"> - </span>
         ))}
     </div>
   );

@@ -1,8 +1,8 @@
-import { squadData } from "../../data/squad/mock-squad";
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { isValidTeamID } from "../../utils/IDcheck/isValidTeamID";
+import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import Loading from "../../components/Loading/Loading";
+import { isValidTeamID } from "../../utils/IDcheck/isValidTeamID";
 import { doFetchTeam } from "../../utils/footballapi/teamAPI/fetchTeamAPI";
 
 const TeamInfo = () => {
@@ -10,27 +10,23 @@ const TeamInfo = () => {
   const { teamID } = useParams();
   const idToNum = parseInt(teamID);
 
-  // useEffect(() => {
-  //   const fetchTeamData = async (idToNum) => {
-  //     const teamData = await doFetchTeam(idToNum);
-  //     setPlayersInfo(teamData);
-  //   };
-  //   fetchTeamData(idToNum);
-  // }, [idToNum]);
+  useEffect(() => {
+    const fetchTeamData = async (idToNum) => {
+      const teamData = await doFetchTeam(idToNum);
+      setPlayersInfo(teamData);
+    };
+    fetchTeamData(idToNum);
+  }, [idToNum]);
+
+  if (!playersInfo) {
+    return <Loading />;
+  }
 
   if (playersInfo) {
     const checkInvalidID = isValidTeamID(playersInfo.response, teamID);
     if (!checkInvalidID) {
       return <ErrorPage />;
     }
-  }
-
-  if (!playersInfo) {
-    return (
-      <div className="flex h-5/6 items-center justify-center">
-        <span className="mx-auto p-10 loading loading-spinner loading-lg"></span>
-      </div>
-    );
   }
 
   return (

@@ -5,7 +5,8 @@ import { FaPeopleGroup } from "react-icons/fa6";
 const MainLineupTable = () => {
   const [matchEvents] = useOutletContext();
 
-  const findMatching = (index, playerId) => {
+  //API startXI vs API players
+  const findMatchingPlayers = (index, playerId) => {
     const allPlayers = matchEvents.response[0].players[index].players;
     const checkLineupId = playerId;
     return allPlayers.find((name) => {
@@ -19,17 +20,17 @@ const MainLineupTable = () => {
       {matchEvents.response[0].lineups.length === 0 ? (
         <>
           <h1 className="bg-slate-800 p-1 text-white text-l text-center">
-            Lineups
+            Match Lineups
           </h1>
-          <div className="text-center text-gray-700 py-5">
+          <main className="text-center text-gray-700 py-5">
             <FaPeopleGroup className="text-mybig mx-auto" />
             <p>No Lineup Data</p>
-          </div>
+          </main>
         </>
       ) : (
         <>
           <h1 className="bg-slate-800 p-1 text-white text-l text-center">
-            Lineups
+            Match Lineups
           </h1>
           <section className="overflow-x-auto">
             <div className="flex">
@@ -43,7 +44,10 @@ const MainLineupTable = () => {
                 </thead>
                 <tbody>
                   {matchEvents.response[0].lineups[0].startXI.map((player) => {
-                    const matchingPlayer = findMatching(0, player.player.id);
+                    const matchingPlayer = findMatchingPlayers(
+                      0,
+                      player.player.id
+                    );
                     return (
                       <LineupRow
                         key={player.player.id}
@@ -74,7 +78,10 @@ const MainLineupTable = () => {
                 </thead>
                 <tbody>
                   {matchEvents.response[0].lineups[1].startXI.map((player) => {
-                    const matchingPlayer = findMatching(1, player.player.id);
+                    const matchingPlayer = findMatchingPlayers(
+                      1,
+                      player.player.id
+                    );
                     return (
                       <LineupRow
                         key={player.player.id}
