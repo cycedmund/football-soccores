@@ -11,30 +11,30 @@ import { toast } from "react-hot-toast";
 const LivePage = () => {
   const [liveFixtures, setLiveFixtures] = useState(null);
 
-  // useEffect(() => {
-  //   const fetchLiveFixturesData = async () => {
-  //     const liveFixturesData = await doFetchLiveFixtures();
-  //     setLiveFixtures(liveFixturesData);
-  //   };
+  useEffect(() => {
+    const fetchLiveFixturesData = async () => {
+      const liveFixturesData = await doFetchLiveFixtures();
+      setLiveFixtures(liveFixturesData);
+    };
 
-  //   fetchLiveFixturesData();
-  // }, []);
+    fetchLiveFixturesData();
+  }, []);
 
   //* ========= refresh data =========
-  // useEffect(() => {
-  //   const refresh = setInterval(refreshLivePage, 300000);
-  //   return () => clearInterval(refresh);
-  // }, []);
+  useEffect(() => {
+    const refresh = setInterval(refreshLivePage, 300000);
+    return () => clearInterval(refresh);
+  }, []);
 
-  // const refreshLivePage = async () => {
-  //   try {
-  //     const result = await doFetchLiveFixtures();
-  //     setLiveFixtures(result);
-  //     toast.loading("Bringing you the latest update now..");
-  //   } catch (error) {
-  //     console.error("Error fetching data", error);
-  //   }
-  // };
+  const refreshLivePage = async () => {
+    try {
+      const result = await doFetchLiveFixtures();
+      setLiveFixtures(result);
+      toast.loading("Bringing you the latest update now..");
+    } catch (error) {
+      console.error("Error fetching data", error);
+    }
+  };
   //* ========= refresh data =========
 
   return (

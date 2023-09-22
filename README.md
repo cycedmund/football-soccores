@@ -1,6 +1,6 @@
 # Soccores
 
-The Soccores app is a platform for accessing Premier League football updates such as live score updates, detailed standings, team profiles, and player information. Soccores aims to provide a seamless experience to keep users informed and engaged with the latest Premier League Scores.
+The Soccores app is a platform for accessing Premier League football updates such as live score updates, detailed standings, team icons, and player information. Soccores aims to provide a seamless experience to keep users informed and engaged with the latest Premier League Scores.
 
 ## Table of Contents
 
@@ -91,7 +91,7 @@ Planned future enhancements for the Soccores app include:
 
   - **Key Learnings**: Learnt the importance of prioritising core functionalities first before developing the UI layouts.
 
-- **Styling with Tailwind CSS**: While using Tailwind CSS can be an effective way to style components, I find that the HTML codes appear cluttered due to the extensive use of classnames. I find it challenging to read and navigate through the codes.
+- **Styling with Tailwind CSS**: While using Tailwind CSS can be an effective way to style components, I find that it can make the HTML code look cluttered due to the extensive use of classnames. I find it challenging to read and navigate through the codes.
   - **Key Learnings**: Learnt about the limitations of Tailwind CSS.
 
 ## References
