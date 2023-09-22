@@ -109,7 +109,8 @@ Planned future enhancements for the Soccores app include:
 
 ### Miscellaneous
 
-- [Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString) -[Sorting](https://usefulangle.com/post/227/javascript-sort-array-of-objects)
+- [Time and Date](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleTimeString)
+- [Sorting](https://usefulangle.com/post/227/javascript-sort-array-of-objects)
 - [Error Page](https://www.makeuseof.com/react-router-404-page-create/)
 - [Managing Arrays](https://www.freecodecamp.org/news/javascript-array-of-objects-tutorial-how-to-create-update-and-loop-through-objects-using-js-array-methods/)
 - [Create Objects from Key-Value pairs](https://www.tutorialspoint.com/javascript-how-to-create-an-object-from-key-value-pairs)

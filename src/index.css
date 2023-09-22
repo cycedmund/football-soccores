@@ -3,13 +3,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* body {
-  margin: 0;
-  background-image: url(./assets/wallpaper.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: center;
-  min-height: 100vh;
-} */

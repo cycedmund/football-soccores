@@ -5,7 +5,7 @@ const filterFixturesByFavTeam = (fixtures, startDate, endDate, favTeam) => {
   return filterGroup
     .map(([date, fixtures]) => {
       const fixturesOfFavTeam = fixtures.filter((fixture) => {
-        return favTeam.some(
+        return favTeam?.some(
           (team) =>
             team.name === fixture.teams.home.name ||
             team.name === fixture.teams.away.name
