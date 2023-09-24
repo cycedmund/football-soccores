@@ -15,18 +15,18 @@ const FinishedPage = ({
 }) => {
   const { dateInput, handleDateInputChange } = useDatePicker();
 
-  const scheduledFixtures = otherFixtures?.response
+  const finishedFixtures = otherFixtures?.response
     ?.filter((fixture) => fixture.fixture.status.short === "FT")
-    .sort((a, b) => new Date(a.fixture.date) - new Date(b.fixture.date));
+    .sort((a, b) => new Date(b.fixture.date) - new Date(a.fixture.date));
 
   const filteredFixturesByDate = filterFixturesByDate(
-    scheduledFixtures,
+    finishedFixtures,
     dateInput.startDate,
     dateInput.endDate
   );
 
   const filteredFixturesByFavTeam = filterFixturesByFavTeam(
-    scheduledFixtures,
+    finishedFixtures,
     dateInput.startDate,
     dateInput.endDate,
     favTeam
